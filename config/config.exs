@@ -13,8 +13,8 @@ config :version_release,
     creation: :manual,
     replacements: [
       %{file: "README.md", patterns: [
-        %{seach: ~r/Current release: (.*)/, replace: "{{version}}"},
-        %{seach: ~r/versin_release, \"(.*)\"/, replace: "{{version}}"}
+        %{search: ~r/Current release: (.*)/, replace: "{{version}}"},
+        %{search: ~r/versin_release, \"(.*)\"/, replace: "{{version}}"}
       ]},
       %{file: "CHANGELOG.md", patterns: [
         %{search: "Unreleased", replace: "{{version}}"},
