@@ -1,6 +1,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.2] - 2020-8-19
 - fixed readme update
 
 ## [0.0.1-beta.1] - 2020-8-19
@@ -12,6 +14,7 @@
 - main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.1...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.2...HEAD
+[0.0.1-beta.2]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.1...v0.0.1-beta.2
 [0.0.1-beta.1]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.1...v0.0.1-beta.1
 [0.0.1]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1...v0.0.1-beta.0
