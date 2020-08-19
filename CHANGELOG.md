@@ -1,6 +1,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+- fixed readme update
 
 ## [0.0.1-beta.1] - 2020-8-19
 - fix changelog
