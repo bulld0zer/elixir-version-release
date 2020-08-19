@@ -21,7 +21,7 @@ config :version_release,
       ]},
       %{file: "README.md", patterns: [
         %{seach: ~r/Current release: (.*)/, replace: "{{version}}"},
-        %{seach: ~r/versin_release, "(.*)"/, replace: "{{version}}"},
+        %{seach: ~r/versin_release, \"(.*)\"/, replace: "{{version}}"},
       ]}
     ]
   }
