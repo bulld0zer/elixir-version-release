@@ -18,6 +18,10 @@ config :version_release,
         %{search: "ReleaseDate", replace: "{{date}}"},
         %{search: "<!-- next-header -->", replace: "<!-- next-header -->\n\n## [Unreleased] - ReleaseDate", global: false},
         %{search: "<!-- next-url -->", replace: "<!-- next-url -->\n[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/{{tag_name}}...HEAD", global: false}    
+      ]},
+      %{file: "README.md", patterns: [
+        %{seach: ~r/Current release: (.*)/, replace: "{{version}}"},
+        %{seach: ~r/versin_release, "(.*)"/, replace: "{{version}}"},
       ]}
     ]
   }

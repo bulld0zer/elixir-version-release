@@ -3,6 +3,7 @@
 ## [Unreleased] - ReleaseDate
 - fix changelog
 - fix changelog config
+- added readme update
 
 ## [0.0.1-beta.0] - 2020-8-19
 - main logic
