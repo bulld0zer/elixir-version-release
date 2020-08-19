@@ -12,14 +12,14 @@
 
 ## Install
 
-Current release: 0.0.1
+0.0.1-beta.1
 
 Add to mix.exs
 ```
 def deps do
   [
     ...other
-    {:versin_release, "0.0.1", only: :dev, runtime: false}
+    {:0.0.1-beta.1, only: :dev, runtime: false}
     ...other
   ]
 end
