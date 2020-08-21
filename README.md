@@ -12,7 +12,7 @@
 
 ## Install
 
-Current release: 0.0.1-beta.9
+Current release: 0.0.1-beta.8
 
 Add to mix.exs
 ```
@@ -46,7 +46,7 @@ end
 ## Changelog
 [Why keep a changelog and why](https://keepachangelog.com/en/1.0.0/)
 ### Config
-Check this repo [config](/config/config.exs)
+Check this repo [config](/config/config.exs) or [elixir-version-release-tests](https://github.com/bulld0zer/elixir-version-release-tests/) repo [config](https://github.com/bulld0zer/elixir-version-release-tests/blob/master/config/config.exs) to have some examples how to configure chanelog updates.
 
 ## License
 
