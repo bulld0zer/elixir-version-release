@@ -34,6 +34,8 @@ end
 | major | Creates major realease version. I.e. from 1.2.3 to 2.2.3         |
 | minor | Creates minor realease version. I.e. from 1.2.3 to 1.3.3         |
 | patch | Creates patch realease version. I.e. from 1.2.3 to 1.2.4         |
+| rc    | Creates alpha realease version. I.e. from 1.2.3 to 1.2.4-rc.0    |
+| beta  | Creates alpha realease version. I.e. from 1.2.3 to 1.2.4-beta.0  |
 | alpha | Creates alpha realease version. I.e. from 1.2.3 to 1.2.4-alpha.0 |
 
 
