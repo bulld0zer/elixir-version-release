@@ -1,6 +1,10 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Fix
+- Typo in readme
+### Update
+- Update readme
 
 ## [0.0.1-beta.8] - 2020-8-21
 - ability to disable hex publish
