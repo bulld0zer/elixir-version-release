@@ -6,6 +6,7 @@ defmodule Mix.Tasks.Version.Patch do
   alias VersionRelease.Changelog
   alias VersionRelease.Config
   alias VersionRelease.Git
+  alias VersionRelease.Hex
   alias VersionRelease.Version
 
   def run(opts) do
@@ -17,6 +18,7 @@ defmodule Mix.Tasks.Version.Patch do
     |> Version.update_mix_file()
     |> Git.tag_with_new_version()
     |> Version.next_dev_iteration()
+    |> Hex.publish()
     |> Git.push()
   end
 

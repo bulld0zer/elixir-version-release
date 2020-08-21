@@ -1,6 +1,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+- actially use hex option
 
 ## [0.0.1-beta.3] - 2020-8-21
 ### Added
