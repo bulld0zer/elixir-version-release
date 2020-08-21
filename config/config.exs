@@ -11,7 +11,7 @@ config :version_release,
   teg_prefix: "v",
   changelog: %{
     creation: :manual,
-    hex_publish: true,
+    # hex_publish: true,
     replacements: [
       %{file: "README.md", patterns: [
         %{search: ~r/Current release: (.*)/, replace: "Current release: {{version}}"},
