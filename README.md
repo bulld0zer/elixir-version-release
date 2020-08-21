@@ -8,7 +8,7 @@
   * Create a git tag for this version
   * Run mix release (disabled by default)
   * Bump version for next development cycle
-  * git push
+  * Push everything to github
 
 ## Install
 
