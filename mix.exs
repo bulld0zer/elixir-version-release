@@ -4,7 +4,7 @@ defmodule VersionRelease.MixProject do
   def project do
     [
       app: :version_release,
-      version: "0.0.1-beta.4",
+      version: "0.0.1-beta.5",
       elixir: "~> 1.8",
       description: "Project version and changelog managment for elixir. Insparation for functionality is taken from [cargo-release](https://github.com/sunng87/cargo-release) package for Rust",
       package: [

@@ -1,6 +1,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.5] - 2020-8-21
 - added hex config
 
 ## [0.0.1-beta.4] - 2020-8-21
@@ -22,7 +24,8 @@
 - main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.4...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.5...HEAD
+[0.0.1-beta.5]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.4...v0.0.1-beta.5
 [0.0.1-beta.4]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.3...v0.0.1-beta.4
 [0.0.1-beta.3]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.2...v0.0.1-beta.3
 [0.0.1-beta.2]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.1...v0.0.1-beta.2
