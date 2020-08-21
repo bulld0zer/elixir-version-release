@@ -1,6 +1,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+- added hex config
 
 ## [0.0.1-beta.4] - 2020-8-21
 - actially use hex option
