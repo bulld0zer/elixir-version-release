@@ -7,7 +7,7 @@ defmodule VersionRelease.Config do
       dry_run: false,
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
-      hex_publish: get_hex_publish_setting() 
+      hex_publish: get_hex_publish_setting(),
       changelog: %{
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()

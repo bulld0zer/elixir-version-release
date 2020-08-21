@@ -1,6 +1,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Added
+- publish tto hex option
 
 ## [0.0.1-beta.2] - 2020-8-19
 - fixed readme update
