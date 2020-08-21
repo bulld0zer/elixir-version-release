@@ -43,6 +43,11 @@ end
 
 * Your project should be managed by git.
 
+## Changelog
+[Why keep a changelog and why](https://keepachangelog.com/en/1.0.0/)
+### Config
+Check this repo [config](/config/config.exs)
+
 ## License
 
 Licensed under [MIT license](LICENSE)

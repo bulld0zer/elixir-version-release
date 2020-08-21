@@ -5,6 +5,8 @@
 - Typo in readme
 ### Update
 - Update readme
+  - Added rc and beta tasks
+  - Added changelog section
 
 ## [0.0.1-beta.8] - 2020-8-21
 - ability to disable hex publish
