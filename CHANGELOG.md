@@ -3,6 +3,7 @@
 ## [Unreleased] - ReleaseDate
 ### Fix
 - Typo in readme
+- Typo in tag_name
 ### Update
 - Update readme
   - Added rc and beta tasks
