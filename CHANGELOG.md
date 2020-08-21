@@ -1,6 +1,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+Added hex docks
 
 ## [0.0.1-beta.6] - 2020-8-21
 
