@@ -1,9 +1,10 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+- ability to disable hex publish
 
 ## [0.0.1-beta.7] - 2020-8-21
-Added hex docks
+- Added hex docks
 
 ## [0.0.1-beta.6] - 2020-8-21
 
