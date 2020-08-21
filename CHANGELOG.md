@@ -1,6 +1,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.9] - 2020-8-21
 ### Fix
 - Typo in readme
 - Typo in tag_name
@@ -39,7 +41,8 @@
 - main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.8...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.9...HEAD
+[0.0.1-beta.9]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.8...v0.0.1-beta.9
 [0.0.1-beta.8]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.7...v0.0.1-beta.8
 [0.0.1-beta.7]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.6...v0.0.1-beta.7
 [0.0.1-beta.6]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.5...v0.0.1-beta.6
