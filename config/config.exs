@@ -8,7 +8,7 @@
 use Mix.Config
 
 config :version_release,
-  teg_prefix: "v",
+  tag_prefix: "v",
   changelog: %{
     creation: :manual,
     # hex_publish: true,

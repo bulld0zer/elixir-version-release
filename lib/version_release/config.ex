@@ -53,7 +53,7 @@ defmodule VersionRelease.Config do
 
   defp get_tag_prefix() do
     :version_release
-    |> Application.get_env(:teg_prefix)
+    |> Application.get_env(:tag_prefix)
     |> case do
       prefix when is_binary(prefix) -> prefix
       _ -> nil
