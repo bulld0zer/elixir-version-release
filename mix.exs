@@ -6,7 +6,7 @@ defmodule VersionRelease.MixProject do
       app: :version_release,
       version: "0.0.1-beta.8",
       elixir: "~> 1.8",
-      description: "Project version and changelog managment for elixir. Insparation for functionality is taken from [cargo-release](https://github.com/sunng87/cargo-release) package for Rust",
+      description: "Project version and changelog managment",
       package: [
         name: "version_release",
         files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
