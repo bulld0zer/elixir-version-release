@@ -1,6 +1,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.7] - 2020-8-21
 Added hex docks
 
 ## [0.0.1-beta.6] - 2020-8-21
@@ -27,7 +29,8 @@ Added hex docks
 - main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.6...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.7...HEAD
+[0.0.1-beta.7]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.6...v0.0.1-beta.7
 [0.0.1-beta.6]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.5...v0.0.1-beta.6
 [0.0.1-beta.5]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.4...v0.0.1-beta.5
 [0.0.1-beta.4]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.3...v0.0.1-beta.4
