@@ -7,6 +7,7 @@ defmodule VersionRelease.Config do
       dry_run: false,
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
+      hex_publish: get_hex_publish_setting() 
       changelog: %{
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
@@ -103,6 +104,15 @@ defmodule VersionRelease.Config do
     |> case do
       replacements when is_list(replacements) -> replacements
       _ -> nil
+    end
+  end
+
+  defp get_hex_publish_setting() do
+    :version_release
+    |> Application.get_env(:hex_publish)
+    |> case do
+      true -> true
+      _ -> false
     end
   end
 
