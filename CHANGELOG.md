@@ -1,6 +1,11 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### In prgress 
+* Fix hex publish
+* Add auto changelog based on commits ("added!, fixed!, changed!")
+* Possiblity to disable git push
+* Possibility to merge all changes to other branches
 
 ## [0.0.1-beta.9] - 2020-8-21
 ### Fix
