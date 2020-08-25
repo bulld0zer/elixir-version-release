@@ -4,7 +4,7 @@ defmodule VersionRelease.MixProject do
   def project do
     [
       app: :version_release,
-      version: "0.0.1-beta.15",
+      version: "0.0.1-beta.16",
       elixir: "~> 1.8",
       description: "Project version and changelog managment",
       package: [
