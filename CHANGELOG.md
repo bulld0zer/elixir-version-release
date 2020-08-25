@@ -6,6 +6,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+* fix license file in mix file
 
 ## [0.0.1-beta.15] - 2020-8-25
 * added changelog title, 
@@ -58,7 +59,7 @@
 - Fix changelog config
 - Added readme update
 
-## [0.0.1-beta.0] - 2020-8-19
+## [0.0.1] - 2020-8-19
 - Main logic
 
 <!-- next-url -->
