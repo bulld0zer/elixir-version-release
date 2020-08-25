@@ -8,6 +8,7 @@ defmodule VersionRelease.Config do
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
       hex_publish: get_hex_publish_setting(),
+      git_push: get_git_push_setting(),
       changelog: %{
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
@@ -19,9 +20,20 @@ defmodule VersionRelease.Config do
   defp print_help() do
     IO.puts(~S"""
 
-    Supported flags:
-      --dry-run
-      --isolated
+    Usage: mix version.[level] [flags]
+
+    Levels: 
+      major   - Bump major version
+      minor   - Bump minor version
+      patch   - Bump patch version
+      rc      - Create/Bump to release candidate version
+      beta    - Create/Bump to beta version
+      alpha   - Create/Bump to alpha version
+
+    Flags:
+      --dry-run, -dr      - Perform a dry run (no writes, just steps)
+      --isolated          - Not implemented
+      --no-git-push, -np  - Disable git push at the end
 
     """)
   end
@@ -39,12 +51,19 @@ defmodule VersionRelease.Config do
   defp insert_param(config, flag) do
     %{
       "--dry-run" => :dry_run,
-      "--isolated" => :isolated
+      "--isolated" => :isolated,
+      "--no-git-push" => :no_git_push,
+
+      "-np" => :dry_run,
+      "-np" => :no_git_push
     }[flag]
     |> case do
       nil ->
         print_help()
         System.halt(0)
+      
+      :no_git_push ->
+        Map.put(config, :git_push, false)
 
       flag ->
         Map.put(config, flag, true)
@@ -113,6 +132,15 @@ defmodule VersionRelease.Config do
     |> case do
       true -> true
       _ -> false
+    end
+  end
+
+  defp get_git_push_setting() do
+    :version_release
+    |> Application.get_env(:git_push)
+    |> case do
+      false -> false
+      _ -> true
     end
   end
 

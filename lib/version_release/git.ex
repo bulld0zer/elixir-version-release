@@ -3,7 +3,7 @@ defmodule VersionRelease.Git do
 
   alias VersionRelease.Config
 
-  def push(%{dry_run: false, wd_clean: true} = config) do
+  def push(%{dry_run: false, wd_clean: true, git_push: true} = config) do
     Logger.info("Push to github with tags")
     System.cmd("git", ["push"])
     System.cmd("git", ["push", "--tags"])
@@ -11,7 +11,7 @@ defmodule VersionRelease.Git do
     config
   end
 
-  def push(%{dry_run: true, wd_clean: true} = config) do
+  def push(%{dry_run: true, wd_clean: true, git_push: true} = config) do
     Logger.info("Push to github with tags")
     config
   end
