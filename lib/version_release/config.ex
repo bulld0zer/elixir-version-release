@@ -53,7 +53,7 @@ defmodule VersionRelease.Config do
       "--dry-run" => :dry_run,
       "--isolated" => :isolated,
       "--no-git-push" => :no_git_push,
-      "-np" => :dry_run,
+      "-dr" => :dry_run,
       "-np" => :no_git_push
     }[flag]
     |> case do

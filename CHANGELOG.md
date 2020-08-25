@@ -1,3 +1,4 @@
+# Changelog
 ## Upcoming
 * Add auto changelog based on commits ("added!, fixed!, changed!")
 * Possibility to merge all changes to other branches
@@ -5,6 +6,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+* added changelog title, 
+* fixed -dr shorthand for dry run
 
 ## [0.0.1-beta.14] - 2020-8-25
 * Possiblity to disable git push
