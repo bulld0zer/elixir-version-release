@@ -12,7 +12,7 @@
 
 ## Install
 
-Current release: 0.0.1-beta.10
+Current release: 0.0.1-beta.11
 
 Add to mix.exs
 ```
