@@ -6,6 +6,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.17] - 2020-8-25
 * fixed license file in mix file
 
 ## [0.0.1-beta.16] - 2020-8-25
@@ -67,7 +69,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.16...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...HEAD
+[0.0.1-beta.17]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.16...v0.0.1-beta.17
 [0.0.1-beta.16]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.15...v0.0.1-beta.16
 [0.0.1-beta.15]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.14...v0.0.1-beta.15
 [0.0.1-beta.14]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.13...v0.0.1-beta.14
