@@ -19,7 +19,7 @@ Add to mix.exs
 def deps do
   [
     ...other
-    {:version_release, 0.0.1-beta.9, only: :dev, runtime: false}
+    {:version_release, "0.0.1-beta.9", only: :dev, runtime: false}
     ...other
   ]
 end

@@ -6,6 +6,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+fix readme and readme updates
 
 ## [0.0.1-beta.12] - 2020-8-25
 * Fix hex publish

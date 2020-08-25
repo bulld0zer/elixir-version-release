@@ -15,7 +15,7 @@ config :version_release,
     replacements: [
       %{file: "README.md", patterns: [
         %{search: ~r/Current release: (.*)/, replace: "Current release: {{version}}"},
-        %{search: ~r/version_release, \"(.*)\",/, replace: "version_release, {{version}},"}
+        %{search: ~r/version_release, \"(.*)\",/, replace: "version_release, \"{{version}}\","}
       ]},
       %{file: "CHANGELOG.md", patterns: [
         %{search: "Unreleased", replace: "{{version}}"},
