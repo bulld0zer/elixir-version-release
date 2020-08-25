@@ -5,6 +5,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.14] - 2020-8-25
 * Possiblity to disable git push
 * Updated readme
 * Added readme to hexdocs
@@ -55,7 +57,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.13...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.14...HEAD
+[0.0.1-beta.14]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.13...v0.0.1-beta.14
 [0.0.1-beta.13]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...v0.0.1-beta.13
 [0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...v0.0.1-beta.12
 [0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...v0.0.1-beta.12
