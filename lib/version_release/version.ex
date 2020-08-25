@@ -69,9 +69,20 @@ defmodule VersionRelease.Version do
         {:ok, file_pid} = File.open(file_name, [:write])
         IO.write(file_pid, replaced)
         File.close(file_pid)
-
+        update_version(version)
       err ->
         Logger.error(err)
     end
+  end
+
+  defp update_version(new_version) do
+    GenServer.call(
+      Mix.ProjectStack,
+      {:update_stack,
+       fn [%{config: config}] = stack ->
+         config = Keyword.put(config, :version, new_version)
+         {:ok, [%{hd(stack) | config: config}]}
+       end}
+    )
   end
 end
