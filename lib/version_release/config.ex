@@ -53,7 +53,6 @@ defmodule VersionRelease.Config do
       "--dry-run" => :dry_run,
       "--isolated" => :isolated,
       "--no-git-push" => :no_git_push,
-
       "-np" => :dry_run,
       "-np" => :no_git_push
     }[flag]
@@ -61,7 +60,7 @@ defmodule VersionRelease.Config do
       nil ->
         print_help()
         System.halt(0)
-      
+
       :no_git_push ->
         Map.put(config, :git_push, false)
 

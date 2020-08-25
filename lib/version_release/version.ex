@@ -70,6 +70,7 @@ defmodule VersionRelease.Version do
         IO.write(file_pid, replaced)
         File.close(file_pid)
         update_version(version)
+
       err ->
         Logger.error(err)
     end
