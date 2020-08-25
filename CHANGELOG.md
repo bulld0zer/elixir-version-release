@@ -6,6 +6,9 @@
 
 ## [Unreleased] - ReleaseDate
 * Possiblity to disable git push
+* Updated readme
+* Added readme to hexdocs
+* Updated help message
 
 ## [0.0.1-beta.13] - 2020-8-25
 * Fix readme and readme updates

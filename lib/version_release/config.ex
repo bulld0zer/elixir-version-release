@@ -20,7 +20,7 @@ defmodule VersionRelease.Config do
   defp print_help() do
     IO.puts(~S"""
 
-    Usage: mix version.[level] [flags]
+    Usage: mix version.[level] [--dry-run | -dr] [--no-git-push | -np]
 
     Levels: 
       major   - Bump major version

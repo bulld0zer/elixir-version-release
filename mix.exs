@@ -13,6 +13,10 @@ defmodule VersionRelease.MixProject do
         licenses: ["MIT"],
         links: %{"GitHub" => "https://github.com/bulld0zer/elixir-version-release"}
       ],
+      docs: [
+        main: "readme"
+        extras: ["README.md", "CHANGELOG.md"]
+      ]
       elixirc_paths: ["lib"],
       deps: deps()
     ]
