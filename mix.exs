@@ -9,7 +9,7 @@ defmodule VersionRelease.MixProject do
       description: "Project version and changelog managment",
       package: [
         name: "version_release",
-        files: ~w(lib .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
+        files: ~w(lib .formatter.exs mix.exs README* LICENSE CHANGELOG*),
         licenses: ["MIT"],
         links: %{"GitHub" => "https://github.com/bulld0zer/elixir-version-release"}
       ],
