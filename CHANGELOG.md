@@ -9,6 +9,8 @@
 
 ## [0.0.1-beta.12] - 2020-8-25
 
+## [0.0.1-beta.12] - 2020-8-25
+
 ## [0.0.1-beta.11] - 2020-8-25
 
 ## [0.0.1-beta.10] - 2020-8-25
@@ -54,6 +56,7 @@
 
 <!-- next-url -->
 [Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...HEAD
+[0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...v0.0.1-beta.12
 [0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.11...v0.0.1-beta.12
 [0.0.1-beta.11]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.10...v0.0.1-beta.11
 [0.0.1-beta.10]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.9...v0.0.1-beta.10
