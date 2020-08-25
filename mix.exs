@@ -16,7 +16,7 @@ defmodule VersionRelease.MixProject do
       docs: [
         main: "readme",
         extras: ["README.md", "CHANGELOG.md"]
-      ]
+      ],
       elixirc_paths: ["lib"],
       deps: deps()
     ]
