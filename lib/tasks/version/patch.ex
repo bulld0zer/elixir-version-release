@@ -17,8 +17,8 @@ defmodule Mix.Tasks.Version.Patch do
     |> Changelog.update()
     |> Version.update_mix_file()
     |> Git.tag_with_new_version()
-    |> Version.next_dev_iteration()
     |> Hex.publish()
+    |> Version.next_dev_iteration()
     |> Git.push()
   end
 

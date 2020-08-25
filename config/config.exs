@@ -9,9 +9,9 @@ use Mix.Config
 
 config :version_release,
   tag_prefix: "v",
+  hex_publish: true,
   changelog: %{
     creation: :manual,
-    hex_publish: true,
     replacements: [
       %{file: "README.md", patterns: [
         %{search: ~r/Current release: (.*)/, replace: "Current release: {{version}}"},
