@@ -6,6 +6,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.0.1-beta.12] - 2020-8-25
 * Fix hex publish
 
 ## [0.0.1-beta.9] - 2020-8-21
@@ -48,6 +50,7 @@
 
 <!-- next-url -->
 [Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...HEAD
+[0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...v0.0.1-beta.12
 [0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.12...v0.0.1-beta.12
 [0.0.1-beta.12]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.11...v0.0.1-beta.12
 [0.0.1-beta.11]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.10...v0.0.1-beta.11
