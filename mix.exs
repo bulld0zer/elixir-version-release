@@ -14,7 +14,7 @@ defmodule VersionRelease.MixProject do
         links: %{"GitHub" => "https://github.com/bulld0zer/elixir-version-release"}
       ],
       docs: [
-        main: "readme"
+        main: "readme",
         extras: ["README.md", "CHANGELOG.md"]
       ]
       elixirc_paths: ["lib"],
