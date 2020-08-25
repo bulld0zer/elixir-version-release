@@ -6,7 +6,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
-* fix license file in mix file
+* fixed license file in mix file
+* fixed first entry in changelog
 
 ## [0.0.1-beta.15] - 2020-8-25
 * added changelog title, 
