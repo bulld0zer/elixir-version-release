@@ -6,6 +6,7 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+* fixed license file in mix file
 
 ## [0.0.1-beta.16] - 2020-8-25
 * fixed license file in mix file
