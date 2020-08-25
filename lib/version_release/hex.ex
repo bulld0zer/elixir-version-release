@@ -3,8 +3,7 @@ defmodule VersionRelease.Hex do
 
   def publish(%{dry_run: false, wd_clean: true, hex_publish: true} = config) do
     Logger.info("Publish on Hex.pm")
-    System.cmd("mix", ["hex.publish"])
-    |> IO.inspect()
+    Mix.Task.run("hex.publish")
 
     config
   end
