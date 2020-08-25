@@ -1,14 +1,14 @@
 ## Upcoming
 * Add auto changelog based on commits ("added!, fixed!, changed!")
-* Possiblity to disable git push
 * Possibility to merge all changes to other branches
 
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+* Possiblity to disable git push
 
 ## [0.0.1-beta.13] - 2020-8-25
-fix readme and readme updates
+* Fix readme and readme updates
 
 ## [0.0.1-beta.12] - 2020-8-25
 * Fix hex publish
@@ -23,7 +23,7 @@ fix readme and readme updates
   - Added changelog section
 
 ## [0.0.1-beta.8] - 2020-8-21
-- ability to disable hex publish
+- Ability to disable hex publish
 
 ## [0.0.1-beta.7] - 2020-8-21
 - Added hex docks
@@ -31,25 +31,25 @@ fix readme and readme updates
 ## [0.0.1-beta.6] - 2020-8-21
 
 ## [0.0.1-beta.5] - 2020-8-21
-- added hex config
+- Added hex config
 
 ## [0.0.1-beta.4] - 2020-8-21
-- actially use hex option
+- Actially use hex option
 
 ## [0.0.1-beta.3] - 2020-8-21
 ### Added
-- publish tto hex option
+- Publish tto hex option
 
 ## [0.0.1-beta.2] - 2020-8-19
-- fixed readme update
+- Fixed readme update
 
 ## [0.0.1-beta.1] - 2020-8-19
-- fix changelog
-- fix changelog config
-- added readme update
+- Fix changelog
+- Fix changelog config
+- Added readme update
 
 ## [0.0.1-beta.0] - 2020-8-19
-- main logic
+- Main logic
 
 <!-- next-url -->
 [Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.13...HEAD
