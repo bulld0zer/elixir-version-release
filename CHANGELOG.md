@@ -6,6 +6,14 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Added 
+* Separate changelog config for pre release versions
+* Added posibility to switch off Hex.pm publish with --skip-publish
+* Added posibility to switch off new dev iteration version bump with --skip-dev-version in shell and dev_version in config
+
+### Changed
+* Use OptionParser to get all parameters from shell
+* --no-git-push flag to --skip-push
 
 ## [0.0.1-beta.17] - 2020-8-25
 * fixed license file in mix file

@@ -23,7 +23,7 @@ defmodule VersionRelease.Version do
     config
   end
 
-  def next_dev_iteration(%{dry_run: false, wd_clean: true, new_version: new_version} = config) do
+  def next_dev_iteration(%{dry_run: false, wd_clean: true, dev_version: true, new_version: new_version} = config) do
     next_iteration_version =
       %{current_version: new_version}
       |> Mix.Tasks.Version.Alpha.bump_alpha()
@@ -41,7 +41,7 @@ defmodule VersionRelease.Version do
     config
   end
 
-  def next_dev_iteration(%{dry_run: true, wd_clean: true, new_version: new_version} = config) do
+  def next_dev_iteration(%{dry_run: true, wd_clean: true, dev_version: true, new_version: new_version} = config) do
     next_iteration_version =
       %{current_version: new_version}
       |> Mix.Tasks.Version.Alpha.bump_alpha()

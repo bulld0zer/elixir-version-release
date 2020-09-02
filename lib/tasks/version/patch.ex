@@ -12,7 +12,6 @@ defmodule Mix.Tasks.Version.Patch do
   def run(opts) do
     opts
     |> Config.create()
-    |> IO.inspect()
     |> Git.is_clean()
     |> bump_patch()
     |> Changelog.update()

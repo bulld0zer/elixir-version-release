@@ -34,7 +34,7 @@ end
 
 ## Usage
 
-`mix version.[level] [--dry-run | -dr] [--no-git-push | -np]`
+`mix version.[level] [--dry-run | -dr] [--skip-push]`
 
 | level | description                                                            |
 |-------|------------------------------------------------------------------------|
@@ -47,13 +47,14 @@ end
 
 
 ## Settings
-| Name        | Type    | Description |
-|-------------|---------|-------------|
-| tag_prefix  | String  | Tag prefix usually just `v` (short for version). Will be created from version. I.e. if version is 1.2.3 and tag prefix is "ver" resulting tag will be `ver1.2.3`
-| hex_publish | Boolean | Disabled by default. Enable publishing to hex.pm Should authorize beforehand. Check [Publishing a package](https://hex.pm/docs/publish) article. 
-| git_push    | Boolean | Enabled by default. Enable git push at the endof all operations
-| changelog   | Config  | Configuration for changelog. Check [Changelog](#changelog) section
-| merge       | Config  | Configuration for mergeing. Check [Merging](#merging) section
+| Field       | Argument       | Type    | Description |
+|-------------|----------------|---------|-------------|
+| tag_prefix  | --tag-prefix        | String  | Tag prefix usually just `v` (short for version). Will be created from version. I.e. if version is 1.2.3 and tag prefix is "ver" resulting tag will be `ver1.2.3`
+| hex_publish | --skip-publish      | Boolean | Disabled by default. Enable publishing to hex.pm Should authorize beforehand. Check [Publishing a package](https://hex.pm/docs/publish) article. 
+| git_push    | --skip-push         | Boolean | Enabled by default. Enable git push at the endof all operations
+| dev_version | --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default
+| changelog   | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog) section
+| merge       | -                   | Config  | Configuration for mergeing. Check [Merging](#merging) section
 
 ### Prerequisite
 
@@ -63,11 +64,11 @@ end
 
 [Why keep a changelog and how](https://keepachangelog.com/en/1.0.0/)
 
-### Settings
+### Changelog config
 | Name          | Type      | Description                   |
 |---------------|-----------|-------------------------------|
 | creation      | Atom      | Mode of creation.             |
-| replacements  | Config[]  | List of replacement settings  |
+| replacements  | Config[]  | List of replacement settings. Check [Replacements config](#replacements-config) section |
 
 #### Creation settings
 | Option        | Description                   |
@@ -76,13 +77,13 @@ end
 | manual        | Changelog will updated accordingly to replacements settings. Replacement values are `{{version}}`, `{{date}}`, `{{tag_name}}`. Everything that actually has changed should be written directly to changelog file
 | git_logs      | !Not implemented! Same as manual, but additionally if git commit massage starts with `add! `, `change! `, `fix! `, message will be added to changelog.
 
-#### Replacements settings
+#### Replacements config
 | Name      | Type      | Description                             |
 |-----------|-----------|-----------------------------------------|
 | file      | String    | File name in which to do replacements.  |
-| patterns  | Config[]  | List of pattern settings                |
+| patterns  | Config[]  | List of pattern settings. Check [Patterns config](#patterns-config) section |
 
-#### Patterns settings
+#### Patterns config
 | Name      | Type          | Description                             |
 |-----------|---------------|-----------------------------------------|
 | search    | String/RegEx  | Pattern to serch in specified file      |

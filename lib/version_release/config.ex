@@ -3,24 +3,39 @@ defmodule VersionRelease.Config do
 
   def create(flags) do
     # print_help()
+    flags =
+      OptionParser.parse(flags,
+        aliases: [
+          d: :dry_run
+        ],
+        strict: [
+          dry_run: :boolean,
+          tag_prefix: :string,
+          skip_push: :boolean,
+          skip_publish: :boolean,
+          skip_dev_version: :boolean
+        ]
+      )
+
     %{
       dry_run: false,
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
       hex_publish: get_hex_publish_setting(),
       git_push: get_git_push_setting(),
+      dev_version: get_dev_version_setting(),
       changelog: %{
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
       }
     }
-    |> parse_flags(flags)
+    |> add_flags(flags)
   end
 
-  defp print_help() do
+  def print_help() do
     IO.puts(~S"""
 
-    Usage: mix version.[level] [--dry-run | -dr] [--no-git-push | -np]
+    Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
     Levels: 
       major   - Bump major version
@@ -31,41 +46,56 @@ defmodule VersionRelease.Config do
       alpha   - Create/Bump to alpha version
 
     Flags:
-      --dry-run, -dr      - Perform a dry run (no writes, just steps)
-      --isolated          - Not implemented
-      --no-git-push, -np  - Disable git push at the end
-
+      --dry-run, -d       - Perform a dry run (no writes, just steps)
+      --tag-prefix        - Prefix of git tag
+      --skip-push         - Disable git push at the end
+      --skip-publish      - Disable publish to Hex.pm
+      --skip-dev-version  - Will not bump version after release
     """)
   end
 
-  defp parse_flags(config, []) do
+  defp add_flags(config, {parsed, _argv, []}) do
+    insert_params(config, parsed)
+  end
+
+  defp add_flags(_config, {_parsed, _argv, errors}) do
+    IO.puts("Incorrect options")
+    IO.puts(inspect(errors))
+    print_help()
+    System.halt(0)
+  end
+
+  defp insert_params(config, []) do
     config
   end
 
-  defp parse_flags(config, [flag | rest]) do
+  defp insert_params(config, [flag | rest]) do
     config
     |> insert_param(flag)
-    |> parse_flags(rest)
+    |> insert_params(rest)
   end
 
   defp insert_param(config, flag) do
-    %{
-      "--dry-run" => :dry_run,
-      "--isolated" => :isolated,
-      "--no-git-push" => :no_git_push,
-      "-dr" => :dry_run,
-      "-np" => :no_git_push
-    }[flag]
+    flag
     |> case do
-      nil ->
+      {:skip_publish, val} ->
+        Map.put(config, :hex_publish, !val)
+
+      {:skip_push, val} ->
+        Map.put(config, :git_push, !val)
+
+      {:dry_run, val} ->
+        Map.put(config, :dry_run, val)
+
+      {:tag_prefix, val} ->
+        Map.put(config, :tag_prefix, val)
+
+      {:skip_dev_version, val} ->
+        Map.put(config, :dev_version, !val)
+
+      _ ->
         print_help()
         System.halt(0)
-
-      :no_git_push ->
-        Map.put(config, :git_push, false)
-
-      flag ->
-        Map.put(config, flag, true)
     end
   end
 
@@ -137,6 +167,15 @@ defmodule VersionRelease.Config do
   defp get_git_push_setting() do
     :version_release
     |> Application.get_env(:git_push)
+    |> case do
+      false -> false
+      _ -> true
+    end
+  end
+
+  defp get_dev_version_setting() do
+    :version_release
+    |> Application.get_env(:dev_version)
     |> case do
       false -> false
       _ -> true

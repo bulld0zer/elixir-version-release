@@ -43,6 +43,45 @@ defmodule VersionRelease.Changelog do
     config
   end
 
+  def pre_release_update(
+        %{
+          dry_run: false,
+          wd_clean: true,
+          changelog: %{
+            creation: changelog_creation,
+            pre_release_replacements: replacements
+          }
+        } = config
+      )
+      when changelog_creation != :disabled do
+    Logger.info("Updating changelog (prerelease)")
+
+    do_replacemetns(config, replacements)
+
+    config
+  end
+
+  # Perform a dry run
+  def pre_release_update(
+        %{
+          dry_run: true,
+          wd_clean: true,
+          changelog: %{
+            creation: changelog_creation,
+            pre_release_replacements: _replacements
+          }
+        } = config
+      )
+      when changelog_creation != :disabled do
+    Logger.info("Updating changelog (prerelease)")
+    config
+  end
+
+  # Do nothing
+  def pre_release_update(config) do
+    config
+  end
+
   defp do_replacemetns(config, []) do
     config
   end

@@ -14,7 +14,7 @@ defmodule Mix.Tasks.Version.Rc do
     |> Config.create()
     |> Git.is_clean()
     |> bump_rc()
-    |> Changelog.update()
+    |> Changelog.pre_release_update()
     |> Version.update_mix_file()
     |> Git.tag_with_new_version()
     |> Hex.publish()
