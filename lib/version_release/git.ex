@@ -78,7 +78,7 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def merge(%{dry_run: dry_run, wd_clean: true, merge: merge} = config) do
+  def merge(%{dry_run: dry_run, wd_clean: true, merge: merge} = config) when is_list(merge) do
     Logger.info("Merging changes")
 
     current_branch =
