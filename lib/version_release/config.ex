@@ -27,7 +27,8 @@ defmodule VersionRelease.Config do
       changelog: %{
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
-      }
+      },
+      merge: get_merge_config()
     }
     |> add_flags(flags)
   end
@@ -180,6 +181,11 @@ defmodule VersionRelease.Config do
       false -> false
       _ -> true
     end
+  end
+
+  defp get_merge_config() do
+    :version_release
+    |> Application.get_env(:merge)
   end
 
   def get_current_version_str(%{

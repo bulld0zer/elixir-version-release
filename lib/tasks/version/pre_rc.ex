@@ -18,6 +18,7 @@ defmodule Mix.Tasks.Version.Rc do
     |> Version.update_mix_file()
     |> Git.tag_with_new_version()
     |> Hex.publish()
+    |> Git.merge()
     |> Git.push()
   end
 

@@ -1,7 +1,6 @@
 # Changelog
 ## Upcoming
 * Add auto changelog based on commits ("added!, fixed!, changed!")
-* Possibility to merge all changes to other branches
 
 <!-- next-header -->
 
@@ -10,6 +9,7 @@
 * Separate changelog config for pre release versions
 * Added posibility to switch off Hex.pm publish with --skip-publish
 * Added posibility to switch off new dev iteration version bump with --skip-dev-version in shell and dev_version in config
+* Possibility to merge all changes to other branches
 
 ### Changed
 * Use OptionParser to get all parameters from shell
