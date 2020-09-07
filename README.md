@@ -1,5 +1,5 @@
 # Version release for elixir
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/bulld0zer/elixir-version-release)
+<!-- ![GitHub release (latest by date)](https://img.shields.io/github/v/release/bulld0zer/elixir-version-release) -->
 ![Hex.pm](https://img.shields.io/hexpm/v/version_release)
 ![Hex.pm](https://img.shields.io/hexpm/dt/version_release)
 [![Docs](https://img.shields.io/badge/hex-docs-blue)](https://hexdocs.pm/version_release)
