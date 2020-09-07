@@ -18,7 +18,7 @@
 | git_push    | --skip-push         | Boolean | Enabled by default. Enable git push at the endof all operations
 | dev_version | --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default
 | changelog   | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog-config) section
-| merge       | -                   | Config  | Configuration for mergeing. Check [Merging](#merge) section
+| merge       | -                   | Config  | Configuration for mergeing. Check [Merge](#merge) section
 
 ## Changelog config
 | Name          | Type      | Description                   |
@@ -33,13 +33,13 @@
 | manual        | Changelog will updated accordingly to replacements settings. Replacement values are `{{version}}`, `{{date}}`, `{{tag_name}}`. Everything that actually has changed should be written directly to changelog file
 | git_logs      | !Not implemented! Same as manual, but additionally if git commit massage starts with `add! `, `change! `, `fix! `, message will be added to changelog.
 
-## Replacements config
+#### Replacements config
 | Name      | Type      | Description                             |
 |-----------|-----------|-----------------------------------------|
 | file      | String    | File name in which to do replacements.  |
 | patterns  | Config[]  | List of pattern settings. Check [Patterns config](#patterns-config) section |
 
-## Patterns config
+#### Patterns config
 | Name      | Type          | Description                             |
 |-----------|---------------|-----------------------------------------|
 | search    | String/RegEx  | Pattern to serch in specified file      |

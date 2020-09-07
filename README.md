@@ -44,8 +44,8 @@ Or type `mix version` for quick help.
 Check this repo [config](/config/config.exs) or [elixir-version-release-tests](https://github.com/bulld0zer/elixir-version-release-tests/) repo [config](https://github.com/bulld0zer/elixir-version-release-tests/blob/master/config/config.exs) to have some examples how to configure chanelog updates.
 
 ## Merging
-Sometimes it is useful to keep 2 or more branches up to date with the branch that you are doing version bump from
-See [reference merging section](/docs/REFERENCE.md#merge) for more info
+Sometimes it is useful to keep 2 or more branches up to date with the branch that you are doing version bump from.
+See [reference merging section](/docs/REFERENCE.md#merge) for more info.
 
 ## License
 Licensed under [MIT license](LICENSE)
