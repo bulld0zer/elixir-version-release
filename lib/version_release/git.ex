@@ -102,7 +102,7 @@ defmodule VersionRelease.Git do
     merge_from_cycle(tail, dry_run, current_branch)
   end
 
-  defp merge_from_cycle([], _, _) do
+  defp merge_from_cycle(_, _, _) do
   end
 
   defp merge_to_cycle(%{from: from, to: [to | tail]}, dry_run, current_branch)
