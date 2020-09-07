@@ -17,8 +17,8 @@
 | hex_publish | --skip-publish      | Boolean | Disabled by default. Enable publishing to hex.pm Should authorize beforehand. Check [Publishing a package](https://hex.pm/docs/publish) article. 
 | git_push    | --skip-push         | Boolean | Enabled by default. Enable git push at the endof all operations
 | dev_version | --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default
-| changelog   | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog) section
-| merge       | -                   | Config  | Configuration for mergeing. Check [Merging](#merging) section
+| changelog   | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog-config) section
+| merge       | -                   | Config  | Configuration for mergeing. Check [Merging](#merge) section
 
 ## Changelog config
 | Name          | Type      | Description                   |
