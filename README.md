@@ -16,14 +16,14 @@
   * Push everything to github
 
 ## Install
-Current release: 0.0.1-beta.17
+Current release: 0.1.0
 
 Add to mix.exs
 ```
 def deps do
   [
     ...other
-    {:version_release, "0.0.1-beta.17", only: :dev, runtime: false}
+    {:version_release, "0.1.0", only: :dev, runtime: false}
     ...other
   ]
 end

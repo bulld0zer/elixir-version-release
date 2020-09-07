@@ -5,6 +5,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.1.0] - 2020-9-7
 ### Added 
 * Separate changelog config for pre release versions
 * Added posibility to switch off Hex.pm publish with --skip-publish
@@ -77,7 +79,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...v0.1.0
 [0.0.1-beta.17]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.16...v0.0.1-beta.17
 [0.0.1-beta.16]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.15...v0.0.1-beta.16
 [0.0.1-beta.15]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.14...v0.0.1-beta.15
