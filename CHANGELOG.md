@@ -1,6 +1,7 @@
 # Changelog
 ## Upcoming
 * Add auto changelog based on commits ("added!, fixed!, changed!")
+* Add --skip-merge to skip mergers to other branches.
 
 <!-- next-header -->
 
