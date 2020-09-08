@@ -33,13 +33,13 @@
 | manual        | Changelog will updated accordingly to replacements settings. Replacement values are `{{version}}`, `{{date}}`, `{{tag_name}}`. Everything that actually has changed should be written directly to changelog file
 | git_logs      | !Not implemented! Same as manual, but additionally if git commit massage starts with `add! `, `change! `, `fix! `, message will be added to changelog.
 
-#### Replacements config
+### Replacements config
 | Name      | Type      | Description                             |
 |-----------|-----------|-----------------------------------------|
 | file      | String    | File name in which to do replacements.  |
 | patterns  | Config[]  | List of pattern settings. Check [Patterns config](#patterns-config) section |
 
-#### Patterns config
+### Patterns config
 | Name      | Type          | Description                             |
 |-----------|---------------|-----------------------------------------|
 | search    | String/RegEx  | Pattern to serch in specified file      |
