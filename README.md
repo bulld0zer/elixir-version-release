@@ -19,7 +19,7 @@
 Current release: 0.1.0
 
 Add to mix.exs
-```
+```elixir
 def deps do
   [
     ...other
