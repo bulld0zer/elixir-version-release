@@ -24,7 +24,7 @@
 | Name          | Type      | Description                   |
 |---------------|-----------|-------------------------------|
 | creation      | Atom      | Mode of creation.             |
-| replacements  | Config[]  | List of replacement settings. Check [Replacements config](#replacements-config) section |
+<!-- | replacements  | Config[]  | List of replacement settings. Check [Replacements config](#replacements-config) section | -->
 
 ### Creation settings
 | Option        | Description                   |
