@@ -31,6 +31,7 @@ end
 
 ## Usage
 `mix version.[level] [--dry-run | -d] [--skip-push] [--skip-publish] [--skip-dev-version] [--tag-prefix=<tag>]`
+
 Check [reference](/docs/REFERENCE.md) for more info on levels, other configuration options and CLI commands
 Or type `mix version` for quick help.
 
