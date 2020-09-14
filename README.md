@@ -30,7 +30,7 @@ end
 ```
 
 ## Usage
-`mix version.[level] [--dry-run | -d] [--skip-push] [--skip-publish] [--skip-dev-version] [--skip-merge] [--tag-prefix=<tag_prefix>]`
+`mix version.[level] [--dry-run | -d] [--skip-push | -g] [--skip-publish | -h] [--skip-dev-version | -v] [--skip-merge | -m] [--tag-prefix=<tag_prefix>]`
 
 Check [reference](/docs/REFERENCE.md) for more info on levels, other configuration options and CLI commands
 Or type `mix version` for quick help.

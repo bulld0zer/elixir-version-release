@@ -7,6 +7,7 @@
 
 ## [Unreleased] - ReleaseDate
 * Add --skip-merge to skip mergers to other branches.
+* Add additional aliases to CLI
 
 ## [0.1.0] - 2020-9-7
 ### Added 
