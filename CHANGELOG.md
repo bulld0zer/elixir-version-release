@@ -1,11 +1,12 @@
 # Changelog
 ## Upcoming
+* Ability to add pre version hooks. (Like "mix test" before doing anything)
 * Add auto changelog based on commits ("added!, fixed!, changed!")
-* Add --skip-merge to skip mergers to other branches.
 
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+* Add --skip-merge to skip mergers to other branches.
 
 ## [0.1.0] - 2020-9-7
 ### Added 

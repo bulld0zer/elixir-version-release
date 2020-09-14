@@ -13,7 +13,8 @@ defmodule VersionRelease.Config do
           tag_prefix: :string,
           skip_push: :boolean,
           skip_publish: :boolean,
-          skip_dev_version: :boolean
+          skip_dev_version: :boolean,
+          skip_merge: :boolean
         ]
       )
 
@@ -52,6 +53,7 @@ defmodule VersionRelease.Config do
       --skip-push         - Disable git push at the end
       --skip-publish      - Disable publish to Hex.pm
       --skip-dev-version  - Will not bump version after release
+      --skip-merge        - Will skip mergers 
     """)
   end
 
@@ -93,6 +95,9 @@ defmodule VersionRelease.Config do
 
       {:skip_dev_version, val} ->
         Map.put(config, :dev_version, !val)
+
+      {:skip_merge, true} ->
+        Map.put(config, :merge, nil)
 
       _ ->
         print_help()

@@ -19,6 +19,7 @@
 | dev_version | --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default
 | changelog   | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog-config) section
 | merge       | -                   | Config  | Configuration for mergeing. Check [Merge](#merge) section
+| -           | --skip_merge        | Boolean | Will skip merge if configures
 
 ## Changelog config
 | Name          | Type      | Description                   |
