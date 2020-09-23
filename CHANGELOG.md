@@ -3,6 +3,7 @@
 * Ability to add pre version hooks. (Like "mix test" before doing anything)
 * Add auto changelog based on commits ("added!, fixed!, changed!")
 * Check if working directory is clean for merge branches
+* display current version in help
 
 <!-- next-header -->
 
