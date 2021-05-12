@@ -1,16 +1,23 @@
 # Changelog
 ## Upcoming
+* Ability to add pre version hooks. (Like "mix test" before doing anything)
 * Add auto changelog based on commits ("added!, fixed!, changed!")
-* Possibility to merge all changes to other branches
+* Check if working directory is clean for merge branches
+* display current version in help
 
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+* Add --skip-merge to skip mergers to other branches.
+* Add additional aliases to CLI
+
+## [0.1.0] - 2020-9-7
 ### Added 
 * Commit message overwrite
 * Separate changelog config for pre release versions
 * Added posibility to switch off Hex.pm publish with --skip-publish
 * Added posibility to switch off new dev iteration version bump with --skip-dev-version in shell and dev_version in config
+* Possibility to merge all changes to other branches
 
 ### Changed
 * Use OptionParser to get all parameters from shell
@@ -78,7 +85,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...v0.1.0
 [0.0.1-beta.17]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.16...v0.0.1-beta.17
 [0.0.1-beta.16]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.15...v0.0.1-beta.16
 [0.0.1-beta.15]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.14...v0.0.1-beta.15

@@ -4,7 +4,7 @@ defmodule VersionRelease.MixProject do
   def project do
     [
       app: :version_release,
-      version: "0.0.1-beta.17",
+      version: "0.1.1-alpha.0",
       elixir: "~> 1.8",
       description: "Project version and changelog managment",
       package: [
@@ -15,7 +15,7 @@ defmodule VersionRelease.MixProject do
       ],
       docs: [
         main: "readme",
-        extras: ["README.md", "CHANGELOG.md", "LICENSE"]
+        extras: ["README.md", "CHANGELOG.md", "LICENSE", "docs/REFERENCE.md"]
       ],
       elixirc_paths: ["lib"],
       deps: deps()

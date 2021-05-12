@@ -77,4 +77,51 @@ defmodule VersionRelease.Git do
       _ -> nil
     end
   end
+
+  def merge(%{dry_run: dry_run, wd_clean: true, merge: merge} = config) when is_list(merge) do
+    Logger.info("Merging changes")
+
+    current_branch =
+      "git"
+      |> System.cmd(["branch", "--show-current"])
+      |> elem(0)
+      |> String.trim("\r\n")
+      |> String.trim("\n")
+
+    merge_from_cycle(merge, dry_run, current_branch)
+
+    config
+  end
+
+  def merge(config) do
+    config
+  end
+
+  defp merge_from_cycle([merge | tail], dry_run, current_branch) do
+    merge_to_cycle(merge, dry_run, current_branch)
+    merge_from_cycle(tail, dry_run, current_branch)
+  end
+
+  defp merge_from_cycle(_, _, _) do
+  end
+
+  defp merge_to_cycle(%{from: from, to: [to | tail]}, dry_run, current_branch)
+       when from == current_branch do
+    merge_to_cycle(%{from: from, to: tail}, dry_run, current_branch)
+    do_merge(%{from: from, to: to}, dry_run)
+  end
+
+  defp merge_to_cycle(%{from: _from, to: _}, _dry_run, _current_branch) do
+  end
+
+  defp do_merge(%{from: from, to: to}, false) do
+    Logger.info("Merging from #{from} to #{to}")
+    System.cmd("git", ["checkout", to])
+    System.cmd("git", ["merge", from])
+    System.cmd("git", ["checkout", from])
+  end
+
+  defp do_merge(%{from: from, to: to}, true) do
+    Logger.info("Merging from #{from} to #{to}")
+  end
 end

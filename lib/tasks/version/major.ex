@@ -19,6 +19,7 @@ defmodule Mix.Tasks.Version.Major do
     |> Git.tag_with_new_version()
     |> Hex.publish()
     |> Version.next_dev_iteration()
+    |> Git.merge()
     |> Git.push()
   end
 

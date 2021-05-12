@@ -6,14 +6,19 @@ defmodule VersionRelease.Config do
     flags =
       OptionParser.parse(flags,
         aliases: [
-          d: :dry_run
+          d: :dry_run,
+          g: :skip_push,
+          h: :skip_publish,
+          v: :skip_dev_version,
+          m: :skip_merge
         ],
         strict: [
           dry_run: :boolean,
           tag_prefix: :string,
           skip_push: :boolean,
           skip_publish: :boolean,
-          skip_dev_version: :boolean
+          skip_dev_version: :boolean,
+          skip_merge: :boolean
         ]
       )
 
@@ -28,6 +33,7 @@ defmodule VersionRelease.Config do
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
       },
+      merge: get_merge_config(),
       commit_message: get_commit_message()
     }
     |> add_flags(flags)
@@ -47,11 +53,12 @@ defmodule VersionRelease.Config do
       alpha   - Create/Bump to alpha version
 
     Flags:
-      --dry-run, -d       - Perform a dry run (no writes, just steps)
-      --tag-prefix        - Prefix of git tag
-      --skip-push         - Disable git push at the end
-      --skip-publish      - Disable publish to Hex.pm
-      --skip-dev-version  - Will not bump version after release
+      -d, --dry-run       - Perform a dry run (no writes, just steps)
+          --tag-prefix        - Prefix of git tag
+      -g, --skip-push         - Disable git push at the end
+      -h, --skip-publish      - Disable publish to Hex.pm
+      -v, --skip-dev-version  - Will not bump version after release
+      -m, --skip-merge        - Will skip mergers
     """)
   end
 
@@ -93,6 +100,9 @@ defmodule VersionRelease.Config do
 
       {:skip_dev_version, val} ->
         Map.put(config, :dev_version, !val)
+
+      {:skip_merge, true} ->
+        Map.put(config, :merge, nil)
 
       _ ->
         print_help()
@@ -181,6 +191,11 @@ defmodule VersionRelease.Config do
       false -> false
       _ -> true
     end
+  end
+
+  defp get_merge_config() do
+    :version_release
+    |> Application.get_env(:merge)
   end
 
   defp get_commit_message do
