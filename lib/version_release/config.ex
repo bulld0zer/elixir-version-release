@@ -43,7 +43,7 @@ defmodule VersionRelease.Config do
 
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
-    Levels: 
+    Levels:
       major   - Bump major version
       minor   - Bump minor version
       patch   - Bump patch version
@@ -57,7 +57,7 @@ defmodule VersionRelease.Config do
       -g, --skip-push         - Disable git push at the end
       -h, --skip-publish      - Disable publish to Hex.pm
       -v, --skip-dev-version  - Will not bump version after release
-      -m, --skip-merge        - Will skip mergers 
+      -m, --skip-merge        - Will skip mergers
     """)
   end
 
@@ -120,28 +120,7 @@ defmodule VersionRelease.Config do
 
   defp get_version() do
     Mix.Project.config()[:version]
-    |> String.split(".")
-    |> case do
-      [major, minor, patch] ->
-        %{
-          major: major |> Integer.parse() |> elem(0),
-          minor: minor |> Integer.parse() |> elem(0),
-          patch: patch |> Integer.parse() |> elem(0)
-        }
-
-      [major, minor, patch_and_ext, pre] ->
-        [patch, ext] = patch_and_ext |> String.split("-")
-
-        %{
-          major: major |> Integer.parse() |> elem(0),
-          minor: minor |> Integer.parse() |> elem(0),
-          patch: patch |> Integer.parse() |> elem(0),
-          pre_release: %{
-            version: pre |> Integer.parse() |> elem(0),
-            extension: ext
-          }
-        }
-    end
+    |> VersionRelease.Version.parse()
   end
 
   defp get_changelog_creation_setting() do

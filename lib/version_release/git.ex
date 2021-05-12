@@ -1,7 +1,7 @@
 defmodule VersionRelease.Git do
   require Logger
 
-  alias VersionRelease.Config
+  alias VersionRelease.{Config, Version}
 
   def push(%{dry_run: false, wd_clean: true, git_push: true} = config) do
     Logger.info("Push to github with tags")
@@ -48,6 +48,16 @@ defmodule VersionRelease.Git do
       res ->
         Logger.warn("Something wrong with working directory. \n #{inspect(res)}")
         Map.put(config, :wd_clean, false)
+    end
+  end
+
+  def current_tag(%{current_version: %{major: major, minor: minor, patch: patch}} = config, cycle) do
+    :os.cmd(
+      :"git tag --sort version:refname | grep #{major}.#{minor}.#{patch}-#{cycle} | tail -n 1 | tr -d '\\n'"
+    )
+    |> case do
+      [] -> config
+      version -> Map.put(config, :current_git_tag, Version.parse("#{version}"))
     end
   end
 

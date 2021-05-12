@@ -59,6 +59,32 @@ defmodule VersionRelease.Version do
     config
   end
 
+  def parse(version) when is_binary(version) do
+    version
+    |> String.split(".")
+    |> case do
+      [major, minor, patch] ->
+        %{
+          major: major |> Integer.parse() |> elem(0),
+          minor: minor |> Integer.parse() |> elem(0),
+          patch: patch |> Integer.parse() |> elem(0)
+        }
+
+      [major, minor, patch_and_ext, pre] ->
+        [patch, ext] = patch_and_ext |> String.split("-")
+
+        %{
+          major: major |> Integer.parse() |> elem(0),
+          minor: minor |> Integer.parse() |> elem(0),
+          patch: patch |> Integer.parse() |> elem(0),
+          pre_release: %{
+            version: pre |> Integer.parse() |> elem(0),
+            extension: ext
+          }
+        }
+    end
+  end
+
   defp update_mix_version(version) do
     file_name = "mix.exs"
     Logger.info("Update #{file_name} version #{version}")
