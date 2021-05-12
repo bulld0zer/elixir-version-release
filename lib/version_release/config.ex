@@ -27,7 +27,8 @@ defmodule VersionRelease.Config do
       changelog: %{
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
-      }
+      },
+      commit_message: get_commit_message()
     }
     |> add_flags(flags)
   end
@@ -37,7 +38,7 @@ defmodule VersionRelease.Config do
 
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
-    Levels: 
+    Levels:
       major   - Bump major version
       minor   - Bump minor version
       patch   - Bump patch version
@@ -179,6 +180,15 @@ defmodule VersionRelease.Config do
     |> case do
       false -> false
       _ -> true
+    end
+  end
+
+  defp get_commit_message do
+    :version_release
+    |> Application.get_env(:commit_message)
+    |> case do
+      message when is_binary(message) -> message
+      _ -> "[version_release] version {{version}}"
     end
   end
 

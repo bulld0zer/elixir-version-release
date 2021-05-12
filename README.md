@@ -47,14 +47,15 @@ end
 
 
 ## Settings
-| Field       | Argument       | Type    | Description |
-|-------------|----------------|---------|-------------|
-| tag_prefix  | --tag-prefix        | String  | Tag prefix usually just `v` (short for version). Will be created from version. I.e. if version is 1.2.3 and tag prefix is "ver" resulting tag will be `ver1.2.3`
-| hex_publish | --skip-publish      | Boolean | Disabled by default. Enable publishing to hex.pm Should authorize beforehand. Check [Publishing a package](https://hex.pm/docs/publish) article. 
-| git_push    | --skip-push         | Boolean | Enabled by default. Enable git push at the endof all operations
-| dev_version | --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default
-| changelog   | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog) section
-| merge       | -                   | Config  | Configuration for mergeing. Check [Merging](#merging) section
+| Field           | Argument       | Type    | Description |
+|-----------------|----------------|---------|-------------|
+| tag_prefix      | --tag-prefix        | String  | Tag prefix usually just `v` (short for version). Will be created from version. I.e. if version is 1.2.3 and tag prefix is "ver" resulting tag will be `ver1.2.3`
+| hex_publish     | --skip-publish      | Boolean | Disabled by default. Enable publishing to hex.pm Should authorize beforehand. Check [Publishing a package](https://hex.pm/docs/publish) article. 
+| git_push        | --skip-push         | Boolean | Enabled by default. Enable git push at the endof all operations
+| dev_version     | --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default
+| changelog       | -                   | Config  | Configuration for changelog. Check [Changelog](#changelog) section
+| merge           | -                   | Config  | Configuration for mergeing. Check [Merging](#merging) section
+| commit_message  | -                   | String  | Overwrite for commit message. Replacement values are `{{version}}`
 
 ### Prerequisite
 
