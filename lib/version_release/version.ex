@@ -3,11 +3,11 @@ defmodule VersionRelease.Version do
 
   alias VersionRelease.Config
 
-  def update_mix_file(%{dry_run: false, wd_clean: true} = config) do
+  def update_mix_file(%{dry_run: false, wd_clean: true, commit_message: commit_message} = config) do
     version = Config.get_new_version_str(config)
     update_mix_version(version)
-
-    System.cmd("git", ["commit", "-am", "[version_release] version #{version}"])
+    commit_message = String.replace(commit_message, "{{version}}", version)
+    System.cmd("git", ["commit", "-am", commit_message])
 
     config
   end

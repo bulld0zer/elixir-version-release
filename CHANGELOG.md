@@ -13,6 +13,7 @@
 
 ## [0.1.0] - 2020-9-7
 ### Added 
+* Commit message overwrite
 * Separate changelog config for pre release versions
 * Added posibility to switch off Hex.pm publish with --skip-publish
 * Added posibility to switch off new dev iteration version bump with --skip-dev-version in shell and dev_version in config
