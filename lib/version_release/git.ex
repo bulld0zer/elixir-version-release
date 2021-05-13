@@ -1,7 +1,8 @@
 defmodule VersionRelease.Git do
   require Logger
 
-  alias VersionRelease.{Config, Version}
+  alias VersionRelease.Config
+  alias VersionRelease.Version
 
   def push(%{dry_run: false, wd_clean: true, git_push: true} = config) do
     Logger.info("Push to github with tags")
@@ -51,13 +52,37 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def current_tag(%{current_version: %{major: major, minor: minor, patch: patch}} = config, cycle) do
-    :os.cmd(
-      :"git tag --sort version:refname | grep #{major}.#{minor}.#{patch}-#{cycle} | tail -n 1 | tr -d '\\n'"
-    )
+  def current_tag(
+        %{tag_prefix: tag_prefix, current_version: %{major: major, minor: minor, patch: patch}} =
+          config,
+        cycle
+      ) do
+    # :os.cmd(
+    #   :"git tag --sort version:refname | grep #{major}.#{minor}.#{patch}-#{cycle} | tail -n 1 | tr -d '\\n'"
+    # )
+    System.cmd("git", [
+      "tag",
+      "-l",
+      "--sort",
+      "version:refname",
+      "#{tag_prefix}#{major}.#{minor}.#{patch}-#{cycle}.*"
+    ])
     |> case do
-      [] -> config
-      version -> Map.put(config, :current_git_tag, Version.parse("#{version}"))
+      {"", 0} ->
+        config
+
+      {versions, 0} ->
+        last_version =
+          versions
+          |> String.split("\n")
+          |> Enum.reject(fn val -> val == "" end)
+          |> Enum.at(-1)
+          |> String.replace_prefix(tag_prefix, "")
+
+        Map.put(config, :current_git_tag, Version.parse(last_version))
+
+      _res ->
+        config
     end
   end
 
