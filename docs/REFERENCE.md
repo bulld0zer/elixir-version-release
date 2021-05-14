@@ -50,7 +50,7 @@
 | global    | Boolean       | File name in which to do replacements.  |
 
 ## Merge
-| Name  | Type     | Description                                            |
-|-------|----------|--------------------------------------------------------|
-| from  | String   | Name of branch that will be merged into other branches |
-| to    | String[] | List of branches which will accept the merge           |
+| Name            | Type          | Description                                            |
+|-----------------|---------------|--------------------------------------------------------|
+| branches        | Mapping list  | Map of branch names to merge from and to. I.E. `%{from: "master", to: ["develop", "edge"]}`|
+| ignore_confligs | Boolean       | Will only warn on merge conflicts and will proceed by skipping branch with conflicts. Default `false` |

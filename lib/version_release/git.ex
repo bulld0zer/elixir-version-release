@@ -21,7 +21,6 @@ defmodule VersionRelease.Git do
     config
   end
 
-
   defp current_branch() do
     System.cmd("git", ["branch", "--show-current"])
     |> elem(0)
@@ -29,14 +28,14 @@ defmodule VersionRelease.Git do
     |> String.trim("\n")
   end
 
-
   def is_clean(config) do
     # System.cmd("git", ["diff", "HEAD", "--exit-code", "--name-only"])
     # prev_tag = :os.cmd(:"git tag --sort version:refname | tail -n 1 | tr -d '\\n'")
-    prev_tag = System.cmd("git", ["describe", "--tags", "--abbrev=0"])
-    |> elem(0)
-    |> String.trim("\r\n")
-    |> String.trim("\n")
+    prev_tag =
+      System.cmd("git", ["describe", "--tags", "--abbrev=0"])
+      |> elem(0)
+      |> String.trim("\r\n")
+      |> String.trim("\n")
 
     System.cmd("git", ["diff", "--compact-summary", "#{prev_tag}"])
     |> case do
@@ -67,9 +66,19 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def is_mergable(%{merge: merge} = config) when is_list(merge) do
+  def is_mergable(
+        %{
+          error: false,
+          merge: %{
+            ignore_confligs: ignore_confligs,
+            branches: branches
+          }
+        } = config
+      )
+      when is_list(branches) do
     Logger.info("Checking if it will be possible to merge")
-    Enum.reduce(merge, true, fn %{from: from, to: tos}, acc ->
+
+    Enum.reduce(branches, true, fn %{from: from, to: tos}, acc ->
       if current_branch() == from do
         Enum.reduce(tos, acc, fn to, acc2 ->
           check_mergable(from, to)
@@ -83,13 +92,19 @@ defmodule VersionRelease.Git do
       end
     end)
     |> case do
-      true -> config
+      true ->
+        config
+
       _ ->
         Logger.error("Merge operation will fail. Please fix merge conflicts manually")
-        System.stop(1)
-        Map.put(config, :error, true)
-    end
 
+        if ignore_confligs != true do
+          System.stop(1)
+          Map.put(config, :error, true)
+        else
+          config
+        end
+    end
   end
 
   def is_mergable(config) do
@@ -99,15 +114,17 @@ defmodule VersionRelease.Git do
   defp check_mergable(from, to) do
     System.cmd("git", ["checkout", to, "--quiet"])
 
-    res = System.cmd("git", ["merge", "--no-commit", "--no-ff", from, "--quiet"])
-    |> case do
-      {_, 0} ->
-        Logger.info("#{from} -> #{to}: ok")
-        {:ok, "#{from} -> #{to}"}
-      {error, 1} ->
-        Logger.warn("#{from} -> #{to}: fault \n #{error}")
-        {:error, error}
-    end
+    res =
+      System.cmd("git", ["merge", "--no-commit", "--no-ff", from, "--quiet"])
+      |> case do
+        {_, 0} ->
+          Logger.info("#{from} -> #{to}: ok")
+          {:ok, "#{from} -> #{to}"}
+
+        {error, 1} ->
+          Logger.warn("#{from} -> #{to}: fault \n #{error}")
+          {:error, error}
+      end
 
     System.cmd("git", ["merge", "--abort"])
     System.cmd("git", ["checkout", from, "--quiet"])
@@ -173,10 +190,17 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def merge(%{dry_run: dry_run, error: false, merge: merge} = config) when is_list(merge) do
+  def merge(
+        %{
+          dry_run: dry_run,
+          error: false,
+          merge: %{branches: branches}
+        } = config
+      )
+      when is_list(branches) do
     Logger.info("Merging changes")
 
-    merge_from_cycle(merge, dry_run, current_branch())
+    merge_from_cycle(branches, dry_run, current_branch())
 
     config
   end
@@ -205,17 +229,20 @@ defmodule VersionRelease.Git do
   defp do_merge(%{from: from, to: to}, false) do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
+
     System.cmd("git", ["merge", from, "--quiet"])
     |> case do
       {_, 0} -> nil
       {_, 1} -> System.cmd("git", ["merge", "--abort"])
     end
+
     System.cmd("git", ["checkout", from, "--quiet"])
   end
 
   defp do_merge(%{from: from, to: to}, true) do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
+
     System.cmd("git", ["merge", "--no-commit", "--no-ff", from, "--quiet"])
     |> case do
       {_, 0} -> nil
@@ -225,5 +252,4 @@ defmodule VersionRelease.Git do
     System.cmd("git", ["merge", "--abort"])
     System.cmd("git", ["checkout", from, "--quiet"])
   end
-
 end

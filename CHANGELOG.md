@@ -8,9 +8,11 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
-* Add --skip-merge to skip mergers to other branches.
-* Add additional aliases to CLI
+* Added --skip-merge to skip mergers to other branches.
+* Added additional aliases to CLI
 * Fixed release new a version not considering previous git tags, only current project version.
+* Fixed merge conflict issue with `merge` operation. It is possible to change behaviour of `merge` operation by adding `ignore_confligs` to `merge` operation config
+* Added return `1` on error to system console on error
 
 ## [0.1.0] - 2020-9-7
 ### Added 
