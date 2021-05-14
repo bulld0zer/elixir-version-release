@@ -10,6 +10,7 @@
 ## [Unreleased] - ReleaseDate
 * Add --skip-merge to skip mergers to other branches.
 * Add additional aliases to CLI
+* Fixed release new a version not considering previous git tags, only current project version.
 
 ## [0.1.0] - 2020-9-7
 ### Added 
