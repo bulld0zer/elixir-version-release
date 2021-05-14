@@ -14,6 +14,7 @@ defmodule Mix.Tasks.Version.Alpha do
     |> Config.create()
     |> Git.is_clean()
     |> Git.is_mergable()
+    |> Git.current_tag(:alpha)
     |> bump_alpha()
     |> Changelog.pre_release_update()
     |> Version.update_mix_file()
@@ -21,6 +22,41 @@ defmodule Mix.Tasks.Version.Alpha do
     |> Hex.publish()
     |> Git.merge()
     |> Git.push()
+  end
+
+  def bump_alpha(
+        %{
+          current_git_tag: %{
+            pre_release: %{
+              extension: "alpha",
+              version: alpha_version
+            }
+          },
+          current_version: current_version
+        } = params
+      ) do
+    new_version =
+      %{
+        major: major,
+        minor: minor,
+        patch: patch,
+        pre_release: %{
+          version: pre_ver
+        }
+      } =
+      current_version
+      |> Map.put(:pre_release, %{
+        extension: "alpha",
+        version: alpha_version + 1
+      })
+
+    Logger.info(
+      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-alpha.#{
+        pre_ver
+      }"
+    )
+
+    params |> Map.put(:new_version, new_version)
   end
 
   def bump_alpha(
