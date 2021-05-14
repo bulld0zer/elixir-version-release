@@ -231,7 +231,9 @@ defmodule VersionRelease.Git do
 
     System.cmd("git", ["merge", from, "--quiet"])
     |> case do
-      {_, 0} -> push(config)
+      {_, 0} ->
+        push(config)
+
       {error, 1} ->
         Logger.warn("Merge from #{from} to #{to} aborted \n #{error}")
         System.cmd("git", ["merge", "--abort"])
