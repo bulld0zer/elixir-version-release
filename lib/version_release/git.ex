@@ -57,9 +57,6 @@ defmodule VersionRelease.Git do
           config,
         cycle
       ) do
-    # :os.cmd(
-    #   :"git tag --sort version:refname | grep #{major}.#{minor}.#{patch}-#{cycle} | tail -n 1 | tr -d '\\n'"
-    # )
     System.cmd("git", [
       "tag",
       "-l",
