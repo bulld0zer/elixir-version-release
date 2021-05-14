@@ -192,7 +192,6 @@ defmodule VersionRelease.Git do
 
   def merge(
         %{
-          dry_run: dry_run,
           error: false,
           merge: %{branches: branches}
         } = config
@@ -200,7 +199,7 @@ defmodule VersionRelease.Git do
       when is_list(branches) do
     Logger.info("Merging changes")
 
-    merge_from_cycle(branches, dry_run, current_branch())
+    merge_from_cycle(branches, config, current_branch())
 
     config
   end
@@ -209,37 +208,39 @@ defmodule VersionRelease.Git do
     config
   end
 
-  defp merge_from_cycle([merge | tail], dry_run, current_branch) do
-    merge_to_cycle(merge, dry_run, current_branch)
-    merge_from_cycle(tail, dry_run, current_branch)
+  defp merge_from_cycle([merge | tail], config, current_branch) do
+    merge_to_cycle(merge, config, current_branch)
+    merge_from_cycle(tail, config, current_branch)
   end
 
   defp merge_from_cycle(_, _, _) do
   end
 
-  defp merge_to_cycle(%{from: from, to: [to | tail]}, dry_run, current_branch)
+  defp merge_to_cycle(%{from: from, to: [to | tail]}, config, current_branch)
        when from == current_branch do
-    merge_to_cycle(%{from: from, to: tail}, dry_run, current_branch)
-    do_merge(%{from: from, to: to}, dry_run)
+    merge_to_cycle(%{from: from, to: tail}, config, current_branch)
+    do_merge(%{from: from, to: to}, config)
   end
 
   defp merge_to_cycle(%{from: _from, to: _}, _dry_run, _current_branch) do
   end
 
-  defp do_merge(%{from: from, to: to}, false) do
+  defp do_merge(%{from: from, to: to}, %{dry_run: false} = config) do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
 
     System.cmd("git", ["merge", from, "--quiet"])
     |> case do
-      {_, 0} -> nil
-      {_, 1} -> System.cmd("git", ["merge", "--abort"])
+      {_, 0} -> push(config)
+      {error, 1} ->
+        Logger.warn("Merge from #{from} to #{to} aborted \n #{error}")
+        System.cmd("git", ["merge", "--abort"])
     end
 
     System.cmd("git", ["checkout", from, "--quiet"])
   end
 
-  defp do_merge(%{from: from, to: to}, true) do
+  defp do_merge(%{from: from, to: to}, %{dry_run: true}) do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
 
