@@ -21,6 +21,7 @@
 | changelog   | -                       | Config  | Configuration for changelog. Check [Changelog](#changelog-config) section |
 | merge       | -                       | Config  | Configuration for mergeing. Check [Merge](#merge) section |
 | -           | -m, --skip_merge        | Boolean | Will skip merge if configures (NOT RELEASED) |
+| commit_message  | -                   | String  | Overwrite for commit message. Replacement values are `{{version}}` |
 
 ## Changelog config
 | Name          | Type      | Description                   |

@@ -33,7 +33,8 @@ defmodule VersionRelease.Config do
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
       },
-      merge: get_merge_config()
+      merge: get_merge_config(),
+      commit_message: get_commit_message()
     }
     |> add_flags(flags)
   end
@@ -43,7 +44,7 @@ defmodule VersionRelease.Config do
 
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
-    Levels: 
+    Levels:
       major   - Bump major version
       minor   - Bump minor version
       patch   - Bump patch version
@@ -57,7 +58,7 @@ defmodule VersionRelease.Config do
       -g, --skip-push         - Disable git push at the end
       -h, --skip-publish      - Disable publish to Hex.pm
       -v, --skip-dev-version  - Will not bump version after release
-      -m, --skip-merge        - Will skip mergers 
+      -m, --skip-merge        - Will skip mergers
     """)
   end
 
@@ -120,28 +121,7 @@ defmodule VersionRelease.Config do
 
   defp get_version() do
     Mix.Project.config()[:version]
-    |> String.split(".")
-    |> case do
-      [major, minor, patch] ->
-        %{
-          major: major |> Integer.parse() |> elem(0),
-          minor: minor |> Integer.parse() |> elem(0),
-          patch: patch |> Integer.parse() |> elem(0)
-        }
-
-      [major, minor, patch_and_ext, pre] ->
-        [patch, ext] = patch_and_ext |> String.split("-")
-
-        %{
-          major: major |> Integer.parse() |> elem(0),
-          minor: minor |> Integer.parse() |> elem(0),
-          patch: patch |> Integer.parse() |> elem(0),
-          pre_release: %{
-            version: pre |> Integer.parse() |> elem(0),
-            extension: ext
-          }
-        }
-    end
+    |> VersionRelease.Version.parse()
   end
 
   defp get_changelog_creation_setting() do
@@ -195,6 +175,15 @@ defmodule VersionRelease.Config do
   defp get_merge_config() do
     :version_release
     |> Application.get_env(:merge)
+  end
+
+  defp get_commit_message do
+    :version_release
+    |> Application.get_env(:commit_message)
+    |> case do
+      message when is_binary(message) -> message
+      _ -> "[version_release] version {{version}}"
+    end
   end
 
   def get_current_version_str(%{
