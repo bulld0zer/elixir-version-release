@@ -3,7 +3,7 @@ defmodule VersionRelease.Version do
 
   alias VersionRelease.Config
 
-  def update_mix_file(%{dry_run: false, wd_clean: true, commit_message: commit_message} = config) do
+  def update_mix_file(%{dry_run: false, error: false, commit_message: commit_message} = config) do
     version = Config.get_new_version_str(config)
     update_mix_version(version)
     commit_message = String.replace(commit_message, "{{version}}", version)
@@ -12,7 +12,7 @@ defmodule VersionRelease.Version do
     config
   end
 
-  def update_mix_file(%{dry_run: true, wd_clean: true} = config) do
+  def update_mix_file(%{dry_run: true, error: false} = config) do
     file_name = "mix.exs"
     version = Config.get_new_version_str(config)
     Logger.info("Update #{file_name} version #{version}")
@@ -24,7 +24,7 @@ defmodule VersionRelease.Version do
   end
 
   def next_dev_iteration(
-        %{dry_run: false, wd_clean: true, dev_version: true, new_version: new_version} = config
+        %{dry_run: false, error: false, dev_version: true, new_version: new_version} = config
       ) do
     next_iteration_version =
       %{current_version: new_version}
@@ -44,7 +44,7 @@ defmodule VersionRelease.Version do
   end
 
   def next_dev_iteration(
-        %{dry_run: true, wd_clean: true, dev_version: true, new_version: new_version} = config
+        %{dry_run: true, error: false, dev_version: true, new_version: new_version} = config
       ) do
     next_iteration_version =
       %{current_version: new_version}

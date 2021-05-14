@@ -7,7 +7,7 @@ defmodule VersionRelease.Changelog do
   def update(
         %{
           dry_run: false,
-          wd_clean: true,
+          error: false,
           changelog: %{
             creation: changelog_creation,
             replacements: replacements
@@ -26,7 +26,7 @@ defmodule VersionRelease.Changelog do
   def update(
         %{
           dry_run: true,
-          wd_clean: true,
+          error: false,
           changelog: %{
             creation: changelog_creation,
             replacements: _replacements
@@ -46,7 +46,7 @@ defmodule VersionRelease.Changelog do
   def pre_release_update(
         %{
           dry_run: false,
-          wd_clean: true,
+          error: false,
           changelog: %{
             creation: changelog_creation,
             pre_release_replacements: replacements
@@ -65,7 +65,7 @@ defmodule VersionRelease.Changelog do
   def pre_release_update(
         %{
           dry_run: true,
-          wd_clean: true,
+          error: false,
           changelog: %{
             creation: changelog_creation,
             pre_release_replacements: _replacements
