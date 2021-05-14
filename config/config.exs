@@ -26,4 +26,3 @@ config :version_release,
       ]}
     ]
   }
-
