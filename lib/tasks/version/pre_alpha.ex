@@ -13,6 +13,7 @@ defmodule Mix.Tasks.Version.Alpha do
     opts
     |> Config.create()
     |> Git.is_clean()
+    |> Git.is_mergable()
     |> Git.current_tag(:alpha)
     |> bump_alpha()
     |> Changelog.pre_release_update()

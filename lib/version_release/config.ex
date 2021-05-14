@@ -24,6 +24,7 @@ defmodule VersionRelease.Config do
 
     %{
       dry_run: false,
+      error: false,
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
       hex_publish: get_hex_publish_setting(),
@@ -175,6 +176,7 @@ defmodule VersionRelease.Config do
   defp get_merge_config() do
     :version_release
     |> Application.get_env(:merge)
+    |> Map.put_new(:ignore_confligs, false)
   end
 
   defp get_commit_message do
