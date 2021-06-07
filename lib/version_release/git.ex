@@ -247,7 +247,10 @@ defmodule VersionRelease.Git do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
 
-    System.cmd("git", ["merge", "--no-commit", "--no-ff"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
+    System.cmd(
+      "git",
+      ["merge", "--no-commit", "--no-ff"] ++ wrap_strategy(strategy) ++ [from, "--quiet"]
+    )
     |> case do
       {_, 0} -> nil
       {error, 1} -> Logger.error(error)
