@@ -216,20 +216,21 @@ defmodule VersionRelease.Git do
   defp merge_from_cycle(_, _, _) do
   end
 
-  defp merge_to_cycle(%{from: from, to: [to | tail]}, config, current_branch)
+  defp merge_to_cycle(%{from: from, to: [to | tail]} = merge, config, current_branch)
        when from == current_branch do
     merge_to_cycle(%{from: from, to: tail}, config, current_branch)
-    do_merge(%{from: from, to: to}, config)
+    strategy = Map.get(merge, :strategy, [])
+    do_merge(%{from: from, to: to, strategy: strategy}, config)
   end
 
   defp merge_to_cycle(%{from: _from, to: _}, _dry_run, _current_branch) do
   end
 
-  defp do_merge(%{from: from, to: to}, %{dry_run: false} = config) do
+  defp do_merge(%{from: from, to: to, strategy: strategy}, %{dry_run: false} = config) do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
 
-    System.cmd("git", ["merge", from, "--quiet"])
+    System.cmd("git", ["merge"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
     |> case do
       {_, 0} ->
         push(config)
@@ -242,11 +243,11 @@ defmodule VersionRelease.Git do
     System.cmd("git", ["checkout", from, "--quiet"])
   end
 
-  defp do_merge(%{from: from, to: to}, %{dry_run: true}) do
+  defp do_merge(%{from: from, to: to, strategy: strategy}, %{dry_run: true}) do
     Logger.info("Merging from #{from} to #{to}")
     System.cmd("git", ["checkout", to, "--quiet"])
 
-    System.cmd("git", ["merge", "--no-commit", "--no-ff", from, "--quiet"])
+    System.cmd("git", ["merge", "--no-commit", "--no-ff"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
     |> case do
       {_, 0} -> nil
       {error, 1} -> Logger.error(error)
@@ -254,5 +255,13 @@ defmodule VersionRelease.Git do
 
     System.cmd("git", ["merge", "--abort"])
     System.cmd("git", ["checkout", from, "--quiet"])
+  end
+
+  defp wrap_strategy([]) do
+    []
+  end
+
+  defp wrap_strategy(strategy) do
+    ["-s"] ++ List.wrap(strategy)
   end
 end

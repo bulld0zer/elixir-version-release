@@ -6,7 +6,7 @@ defmodule VersionRelease.Version do
   def update_mix_file(%{dry_run: false, error: false, commit_message: commit_message} = config) do
     version = Config.get_new_version_str(config)
     update_mix_version(version)
-    commit_message = String.replace(commit_message, "{{version}}", version)
+    commit_message = String.replace(commit_message, "{{message}}", "New version: #{version}")
     System.cmd("git", ["commit", "-am", commit_message])
 
     config
@@ -24,7 +24,13 @@ defmodule VersionRelease.Version do
   end
 
   def next_dev_iteration(
-        %{dry_run: false, error: false, dev_version: true, new_version: new_version} = config
+        %{
+          dry_run: false,
+          error: false,
+          dev_version: true,
+          new_version: new_version,
+          commit_message: commit_message
+        } = config
       ) do
     next_iteration_version =
       %{current_version: new_version}
@@ -33,11 +39,14 @@ defmodule VersionRelease.Version do
 
     update_mix_version(next_iteration_version)
 
-    System.cmd("git", [
-      "commit",
-      "-am",
-      "[version_release] start next development iteration #{next_iteration_version}"
-    ])
+    commit_message =
+      String.replace(
+        commit_message,
+        "{{message}}",
+        "start next development iteration #{next_iteration_version}"
+      )
+
+    System.cmd("git", ["commit", "-am", commit_message])
 
     Logger.info("Start next development iteration #{next_iteration_version}")
     config
