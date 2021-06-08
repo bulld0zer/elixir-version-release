@@ -176,7 +176,7 @@ defmodule VersionRelease.Config do
   defp get_merge_config() do
     :version_release
     |> Application.get_env(:merge, %{})
-    |> Map.put_new(:ignore_confligs, false)
+    |> Map.put_new(:ignore_configs, false)
   end
 
   defp get_commit_message do

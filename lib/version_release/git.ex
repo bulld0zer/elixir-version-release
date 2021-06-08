@@ -70,7 +70,7 @@ defmodule VersionRelease.Git do
         %{
           error: false,
           merge: %{
-            ignore_confligs: ignore_confligs,
+            ignore_configs: ignore_configs,
             branches: branches
           }
         } = config
@@ -98,7 +98,7 @@ defmodule VersionRelease.Git do
       _ ->
         Logger.error("Merge operation will fail. Please fix merge conflicts manually")
 
-        if ignore_confligs != true do
+        if ignore_configs != true do
           System.stop(1)
           Map.put(config, :error, true)
         else

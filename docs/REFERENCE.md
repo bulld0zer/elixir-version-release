@@ -53,4 +53,4 @@
 | Name            | Type          | Description                                            |
 |-----------------|---------------|--------------------------------------------------------|
 | branches        | Mapping list  | Map of branch names to merge from and to. I.E. `%{from: "master", to: ["develop", "edge"]}`|
-| ignore_confligs | Boolean       | Will only warn on merge conflicts and will proceed by skipping branch with conflicts. Default `false` |
+| ignore_configs | Boolean       | Will only warn on merge conflicts and will proceed by skipping branch with conflicts. Default `false` |

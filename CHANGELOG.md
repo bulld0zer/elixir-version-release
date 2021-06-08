@@ -15,7 +15,7 @@
 * option to add merge strategy to `merge` operation
 ### Fixed
 * release new a version not considering previous git tags, only current project version.
-* merge conflict issue with `merge` operation. It is possible to change behaviour of `merge` operation by adding `ignore_confligs` to `merge` operation config
+* merge conflict issue with `merge` operation. It is possible to change behaviour of `merge` operation by adding `ignore_configs` to `merge` operation config
 
 ## [0.1.0] - 2020-9-7
 ### Added 
