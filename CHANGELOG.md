@@ -3,12 +3,11 @@
 * Ability to add pre version hooks. (Like "mix test" before doing anything)
 * Add auto changelog based on commits ("added!, fixed!, changed!")
 * Check if working directory is clean for merge branches
-* display current version in help
-
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
 ### Added
+* display current version in help
 * --skip-merge to skip mergers to other branches.
 * additional aliases to CLI
 * return `1` on error to system console on error
