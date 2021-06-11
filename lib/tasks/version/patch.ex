@@ -23,15 +23,15 @@ defmodule Mix.Tasks.Version.Patch do
     |> Git.push()
   end
 
-  defp bump_patch(
-         %{
-           current_version:
-             %{
-               patch: _patch,
-               pre_release: _
-             } = current_version
-         } = params
-       ) do
+  def bump_patch(
+        %{
+          current_version:
+            %{
+              patch: _patch,
+              pre_release: _
+            } = current_version
+        } = params
+      ) do
     new_version =
       %{
         major: major,
@@ -44,14 +44,14 @@ defmodule Mix.Tasks.Version.Patch do
     params |> Map.put(:new_version, new_version)
   end
 
-  defp bump_patch(
-         %{
-           current_version:
-             %{
-               patch: patch
-             } = current_version
-         } = params
-       ) do
+  def bump_patch(
+        %{
+          current_version:
+            %{
+              patch: patch
+            } = current_version
+        } = params
+      ) do
     new_version =
       %{
         major: major,

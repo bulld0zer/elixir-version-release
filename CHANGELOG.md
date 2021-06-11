@@ -7,6 +7,10 @@
 
 ## [Unreleased] - ReleaseDate
 ### Added
+* credo 
+* Git.Cli module that maps git functions that is used
+* Parsing of release changes from changelog
+* Next version based on changelog
 * display current version in help
 * --skip-merge to skip mergers to other branches.
 * additional aliases to CLI

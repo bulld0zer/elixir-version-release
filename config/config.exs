@@ -13,16 +13,23 @@ config :version_release,
   changelog: %{
     creation: :manual,
     replacements: [
-      %{file: "README.md", patterns: [
-        %{search: ~r/Current release: (.*)/, replace: "Current release: {{version}}"},
-        %{search: ~r/version_release, \"(.*)\",/, replace: "version_release, \"{{version}}\","}
-      ]},
-      %{file: "CHANGELOG.md", patterns: [
-        %{search: "Unreleased", replace: "{{version}}"},
-        %{search: "...HEAD", replace: "...{{tag_name}}", global: false},
-        %{search: "ReleaseDate", replace: "{{date}}"},
-        %{search: "<!-- next-header -->", replace: "<!-- next-header -->\n\n## [Unreleased] - ReleaseDate", global: false},
-        %{search: "<!-- next-url -->", replace: "<!-- next-url -->\n[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/{{tag_name}}...HEAD", global: false}
-      ]}
+      %{
+        file: "README.md",
+        patterns: [
+          %{search: ~r/Current release: (.*)/, replace: "Current release: {{version}}"},
+          %{search: ~r/version_release, \"(.*)\",/, replace: "version_release, \"{{version}}\","}
+        ]
+      },
+      %{
+        file: "CHANGELOG.md",
+        type: :changelog,
+        patterns: [
+          %{search: "Unreleased", replace: "{{version}}", type: :unreleased},
+          %{search: "...HEAD", replace: "...{{tag_name}}", global: false},
+          %{search: "ReleaseDate", replace: "{{date}}"},
+          %{search: "<!-- next-header -->", replace: "<!-- next-header -->\n\n## [Unreleased] - ReleaseDate", global: false},
+          %{search: "<!-- next-url -->", replace: "<!-- next-url -->\n[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/{{tag_name}}...HEAD", global: false}
+        ]
+      }
     ]
   }

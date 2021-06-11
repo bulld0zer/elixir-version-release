@@ -23,15 +23,15 @@ defmodule Mix.Tasks.Version.Minor do
     |> Git.push()
   end
 
-  defp bump_minor(
-         %{
-           current_version:
-             %{
-               minor: minor,
-               pre_release: _
-             } = current_version
-         } = params
-       ) do
+  def bump_minor(
+        %{
+          current_version:
+            %{
+              minor: minor,
+              pre_release: _
+            } = current_version
+        } = params
+      ) do
     new_version =
       %{
         major: major,
@@ -48,14 +48,14 @@ defmodule Mix.Tasks.Version.Minor do
     params |> Map.put(:new_version, new_version)
   end
 
-  defp bump_minor(
-         %{
-           current_version:
-             %{
-               minor: minor
-             } = current_version
-         } = params
-       ) do
+  def bump_minor(
+        %{
+          current_version:
+            %{
+              minor: minor
+            } = current_version
+        } = params
+      ) do
     new_version =
       %{
         major: major,

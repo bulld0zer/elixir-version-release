@@ -3,11 +3,14 @@ defmodule VersionRelease.Git do
 
   alias VersionRelease.Config
   alias VersionRelease.Version
+  alias __MODULE__
 
   def push(%{dry_run: false, error: false, git_push: true} = config) do
     Logger.info("Push to github with tags")
-    System.cmd("git", ["push"])
-    System.cmd("git", ["push", "--tags"])
+    # System.cmd("git", ["push"])
+    Git.Cli.push([])
+    # System.cmd("git", ["push", "--tags"])
+    Git.Cli.push(["--tags"])
 
     config
   end
@@ -22,7 +25,8 @@ defmodule VersionRelease.Git do
   end
 
   defp current_branch() do
-    System.cmd("git", ["branch", "--show-current"])
+    # System.cmd("git", ["branch", "--show-current"])
+    Git.Cli.branch(["--show-current"])
     |> elem(0)
     |> String.trim("\r\n")
     |> String.trim("\n")
@@ -31,13 +35,15 @@ defmodule VersionRelease.Git do
   def is_clean(config) do
     # System.cmd("git", ["diff", "HEAD", "--exit-code", "--name-only"])
     # prev_tag = :os.cmd(:"git tag --sort version:refname | tail -n 1 | tr -d '\\n'")
+    # System.cmd("git", ["describe", "--tags", "--abbrev=0"])
     prev_tag =
-      System.cmd("git", ["describe", "--tags", "--abbrev=0"])
+      Git.Cli.describe(["--tags", "--abbrev=0"])
       |> elem(0)
       |> String.trim("\r\n")
       |> String.trim("\n")
 
-    System.cmd("git", ["diff", "--compact-summary", "#{prev_tag}"])
+    # System.cmd("git", ["diff", "--compact-summary", "#{prev_tag}"])
+    Git.Cli.diff(["--compact-summary", "#{prev_tag}"])
     |> case do
       {"", 0} ->
         ask_to_proceed()
@@ -49,7 +55,8 @@ defmodule VersionRelease.Git do
         nil
     end
 
-    System.cmd("git", ["status", "--porcelain"])
+    # System.cmd("git", ["status", "--porcelain"])
+    Git.Cli.status(["--porcelain"])
     |> case do
       {"", 0} ->
         config
@@ -112,10 +119,12 @@ defmodule VersionRelease.Git do
   end
 
   defp check_mergable(from, to) do
-    System.cmd("git", ["checkout", to, "--quiet"])
+    # System.cmd("git", ["checkout", to, "--quiet"])
+    Git.Cli.checkout([to, "--quiet"])
 
+    # System.cmd("git", ["merge", "--no-commit", "--no-ff", from, "--quiet"])
     res =
-      System.cmd("git", ["merge", "--no-commit", "--no-ff", from, "--quiet"])
+      Git.Cli.merge(["--no-commit", "--no-ff", from, "--quiet"])
       |> case do
         {_, 0} ->
           Logger.info("#{from} -> #{to}: ok")
@@ -126,8 +135,10 @@ defmodule VersionRelease.Git do
           {:error, error}
       end
 
-    System.cmd("git", ["merge", "--abort"])
-    System.cmd("git", ["checkout", from, "--quiet"])
+    # System.cmd("git", ["merge", "--abort"])
+    Git.Cli.merge(["abort"])
+    # System.cmd("git", ["checkout", from, "--quiet"])
+    Git.Cli.checkout([from, "--quiet"])
 
     res
   end
@@ -137,8 +148,14 @@ defmodule VersionRelease.Git do
           config,
         cycle
       ) do
-    System.cmd("git", [
-      "tag",
+    # System.cmd("git", [
+    #   "tag",
+    #   "-l",
+    #   "--sort",
+    #   "version:refname",
+    #   "#{tag_prefix}#{major}.#{minor}.#{patch}-#{cycle}.*"
+    # ])
+    Git.Cli.tag([
       "-l",
       "--sort",
       "version:refname",
@@ -228,36 +245,44 @@ defmodule VersionRelease.Git do
 
   defp do_merge(%{from: from, to: to, strategy: strategy}, %{dry_run: false} = config) do
     Logger.info("Merging from #{from} to #{to}")
-    System.cmd("git", ["checkout", to, "--quiet"])
+    # System.cmd("git", ["checkout", to, "--quiet"])
+    Git.Cli.checkout([to, "--quiet"])
 
-    System.cmd("git", ["merge"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
+    # System.cmd("git", ["merge"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
+    Git.Cli.merge(wrap_strategy(strategy) ++ [from, "--quiet"])
     |> case do
       {_, 0} ->
         push(config)
 
       {error, 1} ->
         Logger.warn("Merge from #{from} to #{to} aborted \n #{error}")
-        System.cmd("git", ["merge", "--abort"])
+        # System.cmd("git", ["merge", "--abort"])
+        Git.Cli.merge(["--abort"])
     end
 
-    System.cmd("git", ["checkout", from, "--quiet"])
+    # System.cmd("git", ["checkout", from, "--quiet"])
+    Git.Cli.checkout([from, "--quiet"])
   end
 
   defp do_merge(%{from: from, to: to, strategy: strategy}, %{dry_run: true}) do
     Logger.info("Merging from #{from} to #{to}")
-    System.cmd("git", ["checkout", to, "--quiet"])
+    # System.cmd("git", ["checkout", to, "--quiet"])
+    Git.Cli.checkout([to, "--quiet"])
 
-    System.cmd(
-      "git",
-      ["merge", "--no-commit", "--no-ff"] ++ wrap_strategy(strategy) ++ [from, "--quiet"]
-    )
+    # System.cmd(
+    #   "git",
+    #   ["merge", "--no-commit", "--no-ff"] ++ wrap_strategy(strategy) ++ [from, "--quiet"]
+    # )
+    Git.Cli.merge(["--no-commit", "--no-ff"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
     |> case do
       {_, 0} -> nil
       {error, 1} -> Logger.error(error)
     end
 
-    System.cmd("git", ["merge", "--abort"])
-    System.cmd("git", ["checkout", from, "--quiet"])
+    # System.cmd("git", ["merge", "--abort"])
+    Git.Cli.merge(["--abort"])
+    # System.cmd("git", ["checkout", from, "--quiet"])
+    Git.Cli.checkout([from, "--quiet"])
   end
 
   defp wrap_strategy([]) do

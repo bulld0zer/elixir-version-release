@@ -139,4 +139,113 @@ defmodule VersionRelease.Changelog do
     |> String.replace("{{#{search}}}", replace, global: true)
     |> inject_vars(rest)
   end
+
+  def get_release_changes(
+        %{
+          changelog:
+            %{
+              replacements: replacements
+            } = changelog
+        } = config
+      ) do
+    vars = [
+      {:version, Config.get_prev_release_str(config)},
+      {:date, "(*.)"},
+      {:tag_name, Config.get_prev_release_tag_str(config)}
+    ]
+
+    %{file: file, patterns: patterns} =
+      replacements |> Enum.find(fn r -> Map.get(r, :type, nil) == :changelog end)
+
+    %{
+      replace: release_pattern,
+      search: unreleased_pattern
+    } = patterns |> Enum.find(fn r -> Map.get(r, :type, nil) == :unreleased end)
+
+    release_pattern = release_pattern |> inject_vars(vars)
+
+    {:ok, changelog_contents} = File.read(file)
+
+    {start, _s_len} = :binary.match(changelog_contents, unreleased_pattern)
+    {finish, _f_len} = :binary.match(changelog_contents, release_pattern)
+
+    %{
+      patch: patch,
+      minor: minor,
+      major: major
+    } =
+      changelog_contents
+      |> String.slice(start, finish - start)
+      |> String.replace("\r\n", "\n")
+      |> String.split("\n", trim: true)
+      |> Enum.filter(fn line -> line != "" end)
+      |> List.delete_at(0)
+      |> List.delete_at(-1)
+      |> Enum.reduce(
+        %{
+          target: :patch,
+          patch: [],
+          minor: [],
+          major: []
+        },
+        fn line, acc -> release_changes_reductor(line, acc, config) end
+      )
+
+    changelog = Map.put(changelog, :changes, %{patch: patch, minor: minor, major: major})
+
+    Map.put(config, :changelog, changelog)
+  end
+
+  defp release_changes_reductor(
+         line,
+         %{
+           patch: patch,
+           minor: minor,
+           major: major
+         } = acc,
+         %{
+           changelog: %{
+             minor_patterns: minor_patterns,
+             major_patterns: major_patterns
+           }
+         }
+       ) do
+    is_header = line |> String.starts_with?("#")
+    is_minor = line |> String.downcase() |> String.contains?(minor_patterns)
+    is_major = line |> String.downcase() |> String.contains?(major_patterns)
+
+    %{target: target} =
+      acc =
+      %{
+        line: line,
+        is_header: is_header,
+        is_minor: is_minor,
+        is_major: is_major
+      }
+      # |> IO.inspect()
+      |> case do
+        %{is_header: true, is_minor: true} -> Map.put(acc, :target, :minor)
+        %{is_header: true, is_major: true} -> Map.put(acc, :target, :major)
+        %{is_header: true} -> Map.put(acc, :target, :patch)
+        _ -> acc
+      end
+
+    %{target: target, is_header: is_header, is_major: is_major}
+    |> case do
+      %{is_header: true} ->
+        acc
+
+      %{is_major: true, target: target} when target != :major ->
+        Map.put(acc, :major, [line | major])
+
+      %{target: :patch} ->
+        Map.put(acc, :patch, [line | patch])
+
+      %{target: :minor} ->
+        Map.put(acc, :minor, [line | minor])
+
+      %{target: :major} ->
+        Map.put(acc, :major, [line | major])
+    end
+  end
 end

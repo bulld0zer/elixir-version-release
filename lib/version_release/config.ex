@@ -25,12 +25,15 @@ defmodule VersionRelease.Config do
     %{
       dry_run: false,
       error: false,
+      prev_release: get_prev_release(),
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
       hex_publish: get_hex_publish_setting(),
       git_push: get_git_push_setting(),
       dev_version: get_dev_version_setting(),
       changelog: %{
+        minor_patterns: get_minor_patterns(),
+        major_patterns: get_major_patterns(),
         creation: get_changelog_creation_setting(),
         replacements: get_changelog_replacements_setting()
       },
@@ -123,6 +126,29 @@ defmodule VersionRelease.Config do
   defp get_version() do
     Mix.Project.config()[:version]
     |> VersionRelease.Version.parse()
+  end
+
+  defp get_prev_release() do
+    tag_prefix = get_tag_prefix()
+
+    VersionRelease.Git.Cli.describe(["--tags", "--exclude=*-*", "--abbrev=0"])
+    |> elem(0)
+    |> String.trim("\r\n")
+    |> String.trim("\n")
+    |> String.replace(tag_prefix, "")
+    |> VersionRelease.Version.parse()
+  end
+
+  defp get_minor_patterns() do
+    :version_release
+    |> Application.get_env(:changelog)
+    |> Map.get(:minor_patterns, [])
+  end
+
+  defp get_major_patterns() do
+    :version_release
+    |> Application.get_env(:changelog)
+    |> Map.get(:major_patterns, [])
   end
 
   defp get_changelog_creation_setting() do
@@ -250,6 +276,24 @@ defmodule VersionRelease.Config do
         } = config
       ) do
     "#{tag_prefix}#{get_new_version_str(config)}"
+  end
+
+  def get_prev_release_str(%{
+        prev_release: %{
+          major: major,
+          minor: minor,
+          patch: patch
+        }
+      }) do
+    "#{major}.#{minor}.#{patch}"
+  end
+
+  def get_prev_release_tag_str(
+        %{
+          tag_prefix: tag_prefix
+        } = config
+      ) do
+    "#{tag_prefix}#{get_prev_release_str(config)}"
   end
 
   def get_date_str() do
