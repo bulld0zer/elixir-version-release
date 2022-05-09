@@ -148,6 +148,7 @@ defmodule VersionRelease.Changelog do
             } = changelog
         } = config
       ) do
+
     vars = [
       {:version, Config.get_prev_release_str(config)},
       {:date, "(*.)"},
@@ -162,12 +163,18 @@ defmodule VersionRelease.Changelog do
       search: unreleased_pattern
     } = patterns |> Enum.find(fn r -> Map.get(r, :type, nil) == :unreleased end)
 
+
     release_pattern = release_pattern |> inject_vars(vars)
+    release_pattern = case config.prev_release do
+      nil -> unreleased_pattern
+      _ -> release_pattern
+    end
 
     {:ok, changelog_contents} = File.read(file)
 
     {start, _s_len} = :binary.match(changelog_contents, unreleased_pattern)
-    {finish, _f_len} = :binary.match(changelog_contents, release_pattern)
+    start = start + byte_size(unreleased_pattern)
+    {finish, _f_len} = :binary.match(changelog_contents |> binary_part(start, byte_size(changelog_contents) - start), release_pattern)
 
     %{
       patch: patch,
@@ -175,7 +182,7 @@ defmodule VersionRelease.Changelog do
       major: major
     } =
       changelog_contents
-      |> String.slice(start, finish - start)
+      |> binary_part(start, finish)
       |> String.replace("\r\n", "\n")
       |> String.split("\n", trim: true)
       |> Enum.filter(fn line -> line != "" end)
@@ -192,6 +199,7 @@ defmodule VersionRelease.Changelog do
       )
 
     changelog = Map.put(changelog, :changes, %{patch: patch, minor: minor, major: major})
+
 
     Map.put(config, :changelog, changelog)
   end
@@ -222,7 +230,6 @@ defmodule VersionRelease.Changelog do
         is_minor: is_minor,
         is_major: is_major
       }
-      # |> IO.inspect()
       |> case do
         %{is_header: true, is_minor: true} -> Map.put(acc, :target, :minor)
         %{is_header: true, is_major: true} -> Map.put(acc, :target, :major)

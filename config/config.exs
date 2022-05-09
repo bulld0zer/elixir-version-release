@@ -12,6 +12,8 @@ config :version_release,
   hex_publish: true,
   changelog: %{
     creation: :manual,
+    minor_patterns: ["added", "changed"],
+    major_patterns: ["breaking"],
     replacements: [
       %{
         file: "README.md",

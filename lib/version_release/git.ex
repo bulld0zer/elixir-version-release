@@ -38,9 +38,11 @@ defmodule VersionRelease.Git do
     # System.cmd("git", ["describe", "--tags", "--abbrev=0"])
     prev_tag =
       Git.Cli.describe(["--tags", "--abbrev=0"])
-      |> elem(0)
-      |> String.trim("\r\n")
-      |> String.trim("\n")
+      |> Git.Cli.get_elem(0)
+      |> case do
+        "" -> Git.Cli.log(["-1", "--pretty=format:\"%h\""]) |> Git.Cli.get_elem(0)
+        pt -> pt
+      end
 
     # System.cmd("git", ["diff", "--compact-summary", "#{prev_tag}"])
     Git.Cli.diff(["--compact-summary", "#{prev_tag}"])

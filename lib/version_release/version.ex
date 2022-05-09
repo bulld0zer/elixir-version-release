@@ -91,6 +91,8 @@ defmodule VersionRelease.Version do
             extension: ext
           }
         }
+
+      _ -> nil
     end
   end
 

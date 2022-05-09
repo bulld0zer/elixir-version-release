@@ -3,6 +3,13 @@ defmodule VersionRelease.Git.Cli do
     System.cmd("git", options)
   end
 
+  def get_elem(res, el) do
+    res
+    |> elem(el)
+    |> String.trim("\r\n")
+    |> String.trim("\n")
+  end
+
   def push(options) when is_list(options) do
     cmd(["push"] ++ options)
   end
@@ -33,5 +40,9 @@ defmodule VersionRelease.Git.Cli do
 
   def tag(options) when is_list(options) do
     cmd(["tag"] ++ options)
+  end
+
+  def log(options) when is_list(options) do
+    cmd(["log"] ++ options)
   end
 end

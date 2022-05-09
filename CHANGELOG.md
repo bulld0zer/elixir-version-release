@@ -1,5 +1,6 @@
 # Changelog
 ## Upcoming
+* Create "Release" on github
 * Ability to add pre version hooks. (Like "mix test" before doing anything)
 * Add auto changelog based on commits ("added!, fixed!, changed!")
 * Check if working directory is clean for merge branches
@@ -17,6 +18,7 @@
 * return `1` on error to system console on error
 * option to add merge strategy to `merge` operation
 ### Fixed
+* Initial setup without any tags.
 * release new a version not considering previous git tags, only current project version.
 * merge conflict issue with `merge` operation. It is possible to change behaviour of `merge` operation by adding `ignore_configs` to `merge` operation config
 

@@ -49,9 +49,12 @@ defmodule VersionRelease.Config do
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
     Levels:
+      next    - Bemp version to major, minor or patch based on changelog
+
       major   - Bump major version
       minor   - Bump minor version
       patch   - Bump patch version
+
       rc      - Create/Bump to release candidate version
       beta    - Create/Bump to beta version
       alpha   - Create/Bump to alpha version
@@ -286,6 +289,10 @@ defmodule VersionRelease.Config do
         }
       }) do
     "#{major}.#{minor}.#{patch}"
+  end
+
+  def get_prev_release_str(_) do
+    "0.0.1"
   end
 
   def get_prev_release_tag_str(
