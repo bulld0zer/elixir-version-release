@@ -50,8 +50,11 @@ jobs:
     - name: Install dependencies
       run: mix deps.get
 
-    - name: Compiles without warnings
-      run: mix compile --warnings-as-errors
+    #- name: Compiles without warnings
+    #  run: mix compile --warnings-as-errors
+      
+    - name: Compiles with warnings
+      run: mix compile
 
     - name: Run tests
       run: mix test
