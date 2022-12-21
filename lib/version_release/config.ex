@@ -49,7 +49,7 @@ defmodule VersionRelease.Config do
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
     Levels:
-      next    - Bump version to major, minor or patch based on changelog
+      next    - Bemp version to major, minor or patch based on changelog
 
       major   - Bump major version
       minor   - Bump minor version
@@ -205,7 +205,7 @@ defmodule VersionRelease.Config do
   defp get_merge_config() do
     :version_release
     |> Application.get_env(:merge, %{})
-    |> Map.put_new(:ignore_conflicts, false)
+    |> Map.put_new(:ignore_configs, false)
   end
 
   defp get_commit_message do
