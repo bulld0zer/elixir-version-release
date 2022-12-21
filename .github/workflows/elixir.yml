@@ -12,7 +12,7 @@ jobs:
     name: Test on OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
     strategy:
       matrix:
-        otp: ['22.3', '25.1']
+        otp: ['22.3.4.2', '25.1']
         elixir: ['1.10.3', '1.14.1']
     steps:
     - name: Set up Elixir
