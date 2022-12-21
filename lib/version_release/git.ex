@@ -75,11 +75,11 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def is_mergable(
+  def is_able_to_merge(
         %{
           error: false,
           merge: %{
-            ignore_configs: ignore_configs,
+            ignore_conflicts: ignore_conflicts,
             branches: branches
           }
         } = config
@@ -90,7 +90,7 @@ defmodule VersionRelease.Git do
     Enum.reduce(branches, true, fn %{from: from, to: tos}, acc ->
       if current_branch() == from do
         Enum.reduce(tos, acc, fn to, acc2 ->
-          check_mergable(from, to)
+          check_is_able_to_merge(from, to)
           |> case do
             {:ok, _} -> acc2
             {:error, _} -> false
@@ -107,7 +107,7 @@ defmodule VersionRelease.Git do
       _ ->
         Logger.error("Merge operation will fail. Please fix merge conflicts manually")
 
-        if ignore_configs != true do
+        if ignore_conflicts != true do
           System.stop(1)
           Map.put(config, :error, true)
         else
@@ -116,11 +116,11 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def is_mergable(config) do
+  def is_able_to_merge(config) do
     config
   end
 
-  defp check_mergable(from, to) do
+  defp check_is_able_to_merge(from, to) do
     # System.cmd("git", ["checkout", to, "--quiet"])
     Git.Cli.checkout([to, "--quiet"])
 
