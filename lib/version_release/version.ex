@@ -92,7 +92,8 @@ defmodule VersionRelease.Version do
           }
         }
 
-      _ -> nil
+      _ ->
+        nil
     end
   end
 

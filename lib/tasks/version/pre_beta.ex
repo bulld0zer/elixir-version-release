@@ -50,9 +50,7 @@ defmodule Mix.Tasks.Version.Beta do
       })
 
     Logger.info(
-      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{
-        pre_ver
-      }"
+      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{pre_ver}"
     )
 
     params |> Map.put(:new_version, new_version)
@@ -85,9 +83,7 @@ defmodule Mix.Tasks.Version.Beta do
       })
 
     Logger.info(
-      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{
-        pre_ver
-      }"
+      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{pre_ver}"
     )
 
     params |> Map.put(:new_version, new_version)
@@ -120,9 +116,7 @@ defmodule Mix.Tasks.Version.Beta do
       })
 
     Logger.info(
-      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{
-        pre_ver
-      }"
+      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{pre_ver}"
     )
 
     params |> Map.put(:new_version, new_version)
@@ -153,9 +147,7 @@ defmodule Mix.Tasks.Version.Beta do
       })
 
     Logger.info(
-      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{
-        pre_ver
-      }"
+      "Next version of #{Mix.Project.config()[:app]} will be #{major}.#{minor}.#{patch}-beta.#{pre_ver}"
     )
 
     params |> Map.put(:new_version, new_version)

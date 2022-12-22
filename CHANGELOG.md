@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Fixed
+* Rename `ignore_configs` to `ignore_conflicts`
 
 ## [0.2.0] - 2022-5-9
 ### Added
@@ -22,14 +24,14 @@
 ### Fixed
 * Initial setup without any tags.
 * release new a version not considering previous git tags, only current project version.
-* merge conflict issue with `merge` operation. It is possible to change behaviour of `merge` operation by adding `ignore_configs` to `merge` operation config
+* merge conflict issue with `merge` operation. It is possible to change behavior of `merge` operation by adding `ignore_conflicts` to `merge` operation config
 
 ## [0.1.0] - 2020-9-7
 ### Added 
 * Commit message overwrite
 * Separate changelog config for pre release versions
-* Added posibility to switch off Hex.pm publish with --skip-publish
-* Added posibility to switch off new dev iteration version bump with --skip-dev-version in shell and dev_version in config
+* Added possibility to switch off Hex.pm publish with --skip-publish
+* Added possibility to switch off new dev iteration version bump with --skip-dev-version in shell and dev_version in config
 * Possibility to merge all changes to other branches
 
 ### Changed
@@ -48,7 +50,7 @@
 * fixed -dr shorthand for dry run
 
 ## [0.0.1-beta.14] - 2020-8-25
-* Possiblity to disable git push
+* Possibility to disable git push
 * Updated readme
 * Added readme to hexdocs
 * Updated help message
@@ -80,7 +82,7 @@
 - Added hex config
 
 ## [0.0.1-beta.4] - 2020-8-21
-- Actially use hex option
+- Actually use hex option
 
 ## [0.0.1-beta.3] - 2020-8-21
 ### Added
