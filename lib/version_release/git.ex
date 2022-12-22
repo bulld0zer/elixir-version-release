@@ -76,6 +76,24 @@ defmodule VersionRelease.Git do
   end
 
   def is_able_to_merge(
+    %{
+      error: false,
+      merge: %{
+        ignore_configs: ignore_conflicts
+      } = merge
+    } = config
+  ) do
+    Logger.warn("ignore_configs was deprecated and will be removed. PLease change it in config to ignore_conflicts")
+    config
+    |> Map.put(:merge,
+      merge
+      |> Map.put(:ignore_conflicts, ignore_conflicts)
+      |> Map.delete(:ignore_configs)
+    )
+    |> is_able_to_merge()
+  end
+
+  def is_able_to_merge(
         %{
           error: false,
           merge: %{
