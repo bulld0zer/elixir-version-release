@@ -16,14 +16,14 @@
   * Push everything to github
 
 ## Install
-Current release: 0.2.1
+Current release: 0.2.2
 
 Add to mix.exs
 ```elixir
 def deps do
   [
     ...other
-    {:version_release, "0.2.1", only: :dev, runtime: false}
+    {:version_release, "0.2.2", only: :dev, runtime: false}
     ...other
   ]
 end

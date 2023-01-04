@@ -8,6 +8,8 @@
 
 ## [Unreleased] - ReleaseDate
 
+## [0.2.2] - 2023-1-4
+
 ## [0.2.1] - 2022-12-22
 ### Fixed
 * Rename `ignore_configs` to `ignore_conflicts`
@@ -102,7 +104,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...v0.1.0
