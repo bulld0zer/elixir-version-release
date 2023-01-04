@@ -35,7 +35,8 @@ defmodule VersionRelease.Config do
         minor_patterns: get_minor_patterns(),
         major_patterns: get_major_patterns(),
         creation: get_changelog_creation_setting(),
-        replacements: get_changelog_replacements_setting()
+        replacements: get_changelog_replacements_setting(:replacements),
+        pre_release_replacements: get_changelog_replacements_setting(:pre_release_replacements)
       },
       merge: get_merge_config(),
       commit_message: get_commit_message()
@@ -45,20 +46,20 @@ defmodule VersionRelease.Config do
 
   def print_help() do
     IO.puts(~S"""
-    
+
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
-    
+
     Levels:
       next    - Bemp version to major, minor or patch based on changelog
-    
+
       major   - Bump major version
       minor   - Bump minor version
       patch   - Bump patch version
-    
+
       rc      - Create/Bump to release candidate version
       beta    - Create/Bump to beta version
       alpha   - Create/Bump to alpha version
-    
+
     Flags:
       -d, --dry-run       - Perform a dry run (no writes, just steps)
           --tag-prefix        - Prefix of git tag
@@ -165,10 +166,10 @@ defmodule VersionRelease.Config do
     end
   end
 
-  defp get_changelog_replacements_setting() do
+  defp get_changelog_replacements_setting(field) do
     :version_release
     |> Application.get_env(:changelog)
-    |> Map.get(:replacements)
+    |> Map.get(field)
     |> case do
       replacements when is_list(replacements) -> replacements
       _ -> nil

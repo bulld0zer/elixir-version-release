@@ -17,7 +17,7 @@ defmodule VersionRelease.Changelog do
       when changelog_creation != :disabled do
     Logger.info("Updating changelog")
 
-    do_replacemetns(config, replacements)
+    do_replacements(config, replacements)
 
     config
   end
@@ -56,7 +56,7 @@ defmodule VersionRelease.Changelog do
       when changelog_creation != :disabled do
     Logger.info("Updating changelog (prerelease)")
 
-    do_replacemetns(config, replacements)
+    do_replacements(config, replacements)
 
     config
   end
@@ -82,11 +82,11 @@ defmodule VersionRelease.Changelog do
     config
   end
 
-  defp do_replacemetns(config, []) do
+  defp do_replacements(config, []) do
     config
   end
 
-  defp do_replacemetns(config, [replacement | rest]) do
+  defp do_replacements(config, [replacement | rest]) do
     vars = [
       {:version, Config.get_new_version_str(config)},
       {:date, Config.get_date_str()},
@@ -94,7 +94,7 @@ defmodule VersionRelease.Changelog do
     ]
 
     replace(replacement, vars)
-    do_replacemetns(config, rest)
+    do_replacements(config, rest)
     config
   end
 
