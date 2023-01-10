@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Added
+* Overwrite default merge message when merging branches
 
 ## [0.2.3] - 2023-1-10
 ### Fixed

@@ -54,3 +54,4 @@
 |-----------------|---------------|--------------------------------------------------------|
 | branches        | Mapping list  | Map of branch names to merge from and to. I.E. `%{from: "master", to: ["develop", "edge"]}`|
 | ignore_conflicts | Boolean       | Will only warn on merge conflicts and will proceed by skipping branch with conflicts. Default `false` |
+| message | String | Overwrite default merge message when merging branches |

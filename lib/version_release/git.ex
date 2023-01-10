@@ -261,20 +261,26 @@ defmodule VersionRelease.Git do
   defp merge_to_cycle(%{from: from, to: [to | tail]} = merge, config, current_branch)
        when from == current_branch do
     merge_to_cycle(%{from: from, to: tail}, config, current_branch)
-    strategy = Map.get(merge, :strategy, [])
-    do_merge(%{from: from, to: to, strategy: strategy}, config)
+
+    %{
+      from: from,
+      to: to,
+      strategy: Map.get(merge, :strategy, []),
+      message: Map.get(merge, :message)
+    }
+    |> do_merge(config)
   end
 
   defp merge_to_cycle(%{from: _from, to: _}, _dry_run, _current_branch) do
   end
 
-  defp do_merge(%{from: from, to: to, strategy: strategy}, %{dry_run: false} = config) do
+  defp do_merge(%{from: from, to: to, strategy: strategy} = params, %{dry_run: false} = config) do
     Logger.info("Merging from #{from} to #{to}")
     # System.cmd("git", ["checkout", to, "--quiet"])
     Git.Cli.checkout([to, "--quiet"])
 
     # System.cmd("git", ["merge"] ++ wrap_strategy(strategy) ++ [from, "--quiet"])
-    Git.Cli.merge(wrap_strategy(strategy) ++ [from, "--quiet"])
+    Git.Cli.merge(maybe_add_message(params) ++ wrap_strategy(strategy) ++ [from, "--quiet"])
     |> case do
       {_, 0} ->
         push(config)
@@ -316,5 +322,18 @@ defmodule VersionRelease.Git do
 
   defp wrap_strategy(strategy) do
     ["-s"] ++ List.wrap(strategy)
+  end
+
+  defp maybe_add_message(%{from: from, to: to, message: message}) when message |> is_binary do
+    message =
+      message
+      |> String.replace("{{from}}", from)
+      |> String.replace("{{to}}", to)
+
+    ["--no-ff", "-m", message]
+  end
+
+  defp maybe_add_message(_) do
+    []
   end
 end
