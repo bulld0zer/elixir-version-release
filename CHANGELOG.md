@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.2.3] - 2023-1-10
 ### Fixed
 * Typo in do_replacemetns
 
@@ -109,7 +111,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.1...v0.2.3
 [0.2.1]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.0.1-beta.17...v0.1.0
