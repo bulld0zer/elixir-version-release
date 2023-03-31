@@ -9,6 +9,8 @@
 ## [Unreleased] - ReleaseDate
 ### Added
 * possibility to force hex publish
+### Dependencies
+* Bump ex_doc from 0.29.1 to 0.29.4
 
 ## [0.3.0] - 2023-1-10
 ### Added
