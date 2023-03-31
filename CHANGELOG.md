@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Added
+* possibility to force hex publish
 
 ## [0.3.0] - 2023-1-10
 ### Added
