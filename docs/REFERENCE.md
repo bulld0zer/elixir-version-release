@@ -16,6 +16,7 @@
 | -           | -d, --dry-run           | Boolean | Preview all operations that will be executed. |
 | tag_prefix  | --tag-prefix            | String  | Tag prefix usually just `v` (short for version). Will be created from version. I.e. if version is 1.2.3 and tag prefix is "ver" resulting tag will be `ver1.2.3` |
 | hex_publish | -h, --skip-publish      | Boolean | Disabled by default. Enable publishing to hex.pm Should authorize beforehand. Check [Publishing a package](https://hex.pm/docs/publish) article. |
+| hex_publish_force | -f, --force-publish | Boolean | Disabled by default. Publishing to hex.pm without confirmation. Check [Publishing a package from CI](https://hex.pm/docs/publish#publishing-from-ci) article. |
 | git_push    | -g, --skip-push         | Boolean | Enabled by default. Enable git push at the end of all operations |
 | dev_version | -v, --skip_dev_version  | Boolean | Will not bump version after release. Enabled by default |
 | changelog   | -                       | Config  | Configuration for changelog. Check [Changelog](#changelog-config) section |

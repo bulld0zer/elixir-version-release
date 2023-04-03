@@ -8,7 +8,9 @@
 
 ## [Unreleased] - ReleaseDate
 ### Added
-* force_publish configuration into config struct creation
+* hex_force_publish configuration into config struct creation
+* added new configuration argument for the command client
+* updated references
 
 ## [0.4.0] - 2023-3-31
 ### Added

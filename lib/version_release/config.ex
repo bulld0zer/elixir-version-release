@@ -9,6 +9,7 @@ defmodule VersionRelease.Config do
           d: :dry_run,
           g: :skip_push,
           h: :skip_publish,
+          f: :force_publish,
           v: :skip_dev_version,
           m: :skip_merge
         ],
@@ -17,6 +18,7 @@ defmodule VersionRelease.Config do
           tag_prefix: :string,
           skip_push: :boolean,
           skip_publish: :boolean,
+          publish_publish: :boolean,
           skip_dev_version: :boolean,
           skip_merge: :boolean
         ]
@@ -29,7 +31,7 @@ defmodule VersionRelease.Config do
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
       hex_publish: get_hex_publish_setting(),
-      force_publish: get_hex_force_publish_setting(),
+      hex_force_publish: get_hex_force_publish_setting(),
       git_push: get_git_push_setting(),
       dev_version: get_dev_version_setting(),
       changelog: %{
@@ -97,6 +99,9 @@ defmodule VersionRelease.Config do
     |> case do
       {:skip_publish, val} ->
         Map.put(config, :hex_publish, !val)
+
+      {:force_publish, val} ->
+        Map.put(config, :hex_force_publish, val)
 
       {:skip_push, val} ->
         Map.put(config, :git_push, !val)
@@ -188,7 +193,7 @@ defmodule VersionRelease.Config do
 
   defp get_hex_force_publish_setting() do
     :version_release
-    |> Application.get_env(:force_publish)
+    |> Application.get_env(:hex_force_publish)
     |> case do
       true -> true
       _ -> false

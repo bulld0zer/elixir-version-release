@@ -17,7 +17,7 @@ defmodule VersionRelease.ConfigTest do
         },
         tag_prefix: "v",
         hex_publish: true,
-        force_publish: false,
+        hex_force_publish: false,
         git_push: true,
         dev_version: true,
         changelog: %{
