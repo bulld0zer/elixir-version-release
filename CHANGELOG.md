@@ -13,10 +13,6 @@
 ## [0.4.0] - 2023-3-31
 ### Added
 * possibility to force hex publish
-
-## [0.4.0] - 2023-3-31
-### Added
-* possibility to force hex publish
 ### Dependencies
 * Bump ex_doc from 0.29.1 to 0.29.4
 * Bump credo from 1.6.7 to 1.7.0
