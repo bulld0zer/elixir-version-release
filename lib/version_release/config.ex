@@ -29,6 +29,7 @@ defmodule VersionRelease.Config do
       current_version: get_version(),
       tag_prefix: get_tag_prefix(),
       hex_publish: get_hex_publish_setting(),
+      force_publish: get_hex_force_publish_setting(),
       git_push: get_git_push_setting(),
       dev_version: get_dev_version_setting(),
       changelog: %{
@@ -179,6 +180,15 @@ defmodule VersionRelease.Config do
   defp get_hex_publish_setting() do
     :version_release
     |> Application.get_env(:hex_publish)
+    |> case do
+      true -> true
+      _ -> false
+    end
+  end
+
+  defp get_hex_force_publish_setting() do
+    :version_release
+    |> Application.get_env(:force_publish)
     |> case do
       true -> true
       _ -> false
