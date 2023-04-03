@@ -8,6 +8,10 @@
 
 ## [Unreleased] - ReleaseDate
 ### Added
+* force_publish configuration into config struct creation
+
+## [0.4.0] - 2023-3-31
+### Added
 * possibility to force hex publish
 
 ## [0.3.0] - 2023-1-10
