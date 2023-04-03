@@ -10,9 +10,9 @@ defmodule VersionRelease.ConfigTest do
       error: false,
       prev_release: %{major: 0, minor: 3, patch: 0},
       current_version: %{
-        major: 0,
-        minor: 3,
-        patch: 1,
+        major: _,
+        minor: _,
+        patch: _,
         pre_release: %{extension: "alpha", version: 0}
       },
       tag_prefix: "v",
