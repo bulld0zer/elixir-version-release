@@ -4,7 +4,7 @@ defmodule VersionRelease.Hex do
   def publish(%{dry_run: false, error: false, hex_publish: true} = config) do
     Logger.info("Publish on Hex.pm")
 
-    Map.get(config, :hex_publish_force, false)
+    Map.get(config, :hex_force_publish, false)
     |> case do
       true ->
         Mix.Task.run("hex.publish --yes")

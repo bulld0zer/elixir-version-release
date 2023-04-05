@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Fix
+* use the proper config key in the hex module
 
 ## [0.5.0] - 2023-4-5
 ### Added
