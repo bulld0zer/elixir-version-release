@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Fix
+* parameter to force hex.publish on `Mix.Task.run`
 
 ## [0.5.1] - 2023-4-5
 ### Fix
