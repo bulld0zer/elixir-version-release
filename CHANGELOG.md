@@ -8,7 +8,7 @@
 
 ## [Unreleased] - ReleaseDate
 ### Fix
-* use the proper config key in the hex module
+* parameter to force hex.publish on `Mix.Task.run`
 
 ## [0.5.1] - 2023-4-5
 ### Fix

@@ -7,7 +7,7 @@ defmodule VersionRelease.Hex do
     Map.get(config, :hex_force_publish, false)
     |> case do
       true ->
-        Mix.Task.run("hex.publish --yes")
+        Mix.Task.run("hex.publish", ["--yes"])
 
       _ ->
         Mix.Task.run("hex.publish")
