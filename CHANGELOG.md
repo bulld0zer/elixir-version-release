@@ -7,10 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
-### Added
-* hex_force_publish configuration into config struct creation
-* added new configuration argument for the command client
-* updated references
+### Fix
+* use the proper config key in the hex module
 
 ## [0.5.0] - 2023-4-5
 ### Added
