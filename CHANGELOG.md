@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.5.2] - 2023-4-5
 ### Fix
 * parameter to force hex.publish on `Mix.Task.run`
 
@@ -134,7 +136,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.2...HEAD
+[0.5.2]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.3.0...v0.4.0
