@@ -12,6 +12,12 @@
 * added new configuration argument for the command client
 * updated references
 
+## [0.5.0] - 2023-4-5
+### Added
+* hex_force_publish configuration into config struct creation
+* added new configuration argument for the command client
+* updated references
+
 ## [0.4.0] - 2023-3-31
 ### Added
 * possibility to force hex publish
@@ -126,7 +132,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.3...v0.3.0
 [0.2.3]: https://github.com/bulld0zer/elixir-version-release/compare/v0.2.1...v0.2.3
