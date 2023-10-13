@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Fix
+* Retreaving first commit for uncommited changes check before first tag is created
 
 ## [0.5.2] - 2023-4-5
 ### Fix

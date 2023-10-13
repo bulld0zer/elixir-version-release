@@ -40,12 +40,12 @@ defmodule VersionRelease.Git do
       Git.Cli.describe(["--tags", "--abbrev=0"])
       |> Git.Cli.get_elem(0)
       |> case do
-        "" -> Git.Cli.log(["-1", "--pretty=format:\"%h\""]) |> Git.Cli.get_elem(0)
+        "" -> Git.Cli.rev_list(["--max-parents=0", "HEAD"]) |> Git.Cli.get_elem(0)
         pt -> pt
       end
 
     # System.cmd("git", ["diff", "--compact-summary", "#{prev_tag}"])
-    Git.Cli.diff(["--compact-summary", "#{prev_tag}"])
+    Git.Cli.diff(["--compact-summary", prev_tag])
     |> case do
       {"", 0} ->
         ask_to_proceed()

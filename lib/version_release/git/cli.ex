@@ -45,4 +45,8 @@ defmodule VersionRelease.Git.Cli do
   def log(options) when is_list(options) do
     cmd(["log"] ++ options)
   end
+
+  def rev_list(options) when is_list(options) do
+    cmd(["rev-list"] ++ options)
+  end
 end
