@@ -7,6 +7,8 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+
+## [0.5.3] - 2023-10-13
 ### Fix
 * Retreaving first commit for uncommited changes check before first tag is created
 
@@ -138,7 +140,8 @@
 - Main logic
 
 <!-- next-url -->
-[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.3...HEAD
+[0.5.3]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.2...v0.5.3
 [0.5.2]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.1...v0.5.2
 [0.5.1]: https://github.com/bulld0zer/elixir-version-release/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/bulld0zer/elixir-version-release/compare/v0.4.0...v0.5.0
