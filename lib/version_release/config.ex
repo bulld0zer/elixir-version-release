@@ -49,20 +49,20 @@ defmodule VersionRelease.Config do
 
   def print_help() do
     IO.puts(~S"""
-    
+
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
-    
+
     Levels:
       next    - Bemp version to major, minor or patch based on changelog
-    
+
       major   - Bump major version
       minor   - Bump minor version
       patch   - Bump patch version
-    
+
       rc      - Create/Bump to release candidate version
       beta    - Create/Bump to beta version
       alpha   - Create/Bump to alpha version
-    
+
     Flags:
       -d, --dry-run       - Perform a dry run (no writes, just steps)
           --tag-prefix        - Prefix of git tag
