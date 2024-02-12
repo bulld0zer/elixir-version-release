@@ -32,7 +32,7 @@ defmodule VersionRelease.Git do
     |> String.trim("\n")
   end
 
-  def is_clean(config) do
+  def clean?(config) do
     # System.cmd("git", ["diff", "HEAD", "--exit-code", "--name-only"])
     # prev_tag = :os.cmd(:"git tag --sort version:refname | tail -n 1 | tr -d '\\n'")
     # System.cmd("git", ["describe", "--tags", "--abbrev=0"])
@@ -75,7 +75,7 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def is_able_to_merge(
+  def able_to_merge?(
         %{
           error: false,
           merge:
@@ -84,7 +84,7 @@ defmodule VersionRelease.Git do
             } = merge
         } = config
       ) do
-    Logger.warn(
+    Logger.warning(
       "ignore_configs was deprecated and will be removed. PLease change it in config to ignore_conflicts"
     )
 
@@ -95,10 +95,10 @@ defmodule VersionRelease.Git do
       |> Map.put(:ignore_conflicts, ignore_conflicts)
       |> Map.delete(:ignore_configs)
     )
-    |> is_able_to_merge()
+    |> able_to_merge?()
   end
 
-  def is_able_to_merge(
+  def able_to_merge?(
         %{
           error: false,
           merge: %{
@@ -110,19 +110,8 @@ defmodule VersionRelease.Git do
       when is_list(branches) do
     Logger.info("Checking if it will be possible to merge")
 
-    Enum.reduce(branches, true, fn %{from: from, to: tos}, acc ->
-      if current_branch() == from do
-        Enum.reduce(tos, acc, fn to, acc2 ->
-          check_is_able_to_merge(from, to)
-          |> case do
-            {:ok, _} -> acc2
-            {:error, _} -> false
-          end
-        end)
-      else
-        acc
-      end
-    end)
+    branches
+    |> check_if_able_to_merge()
     |> case do
       true ->
         config
@@ -139,11 +128,29 @@ defmodule VersionRelease.Git do
     end
   end
 
-  def is_able_to_merge(config) do
+  def able_to_merge?(config) do
     config
   end
 
-  defp check_is_able_to_merge(from, to) do
+  defp check_if_able_to_merge([%{from: from, to: targets} | rest]) do
+    result =
+      targets
+      |> Enum.reduce(true, fn to, acc ->
+        check_if_able_to_merge(from, to)
+        |> case do
+          {:ok, _} -> acc
+          {:error, _} -> false
+        end
+      end)
+
+    result && check_if_able_to_merge(rest)
+  end
+
+  defp check_if_able_to_merge([]) do
+    true
+  end
+
+  defp check_if_able_to_merge(from, to) do
     # System.cmd("git", ["checkout", to, "--quiet"])
     Git.Cli.checkout([to, "--quiet"])
 
@@ -156,7 +163,7 @@ defmodule VersionRelease.Git do
           {:ok, "#{from} -> #{to}"}
 
         {error, 1} ->
-          Logger.warn("#{from} -> #{to}: fault \n #{error}")
+          Logger.warning("#{from} -> #{to}: fault \n #{error}")
           {:error, error}
       end
 
@@ -286,7 +293,7 @@ defmodule VersionRelease.Git do
         push(config)
 
       {error, 1} ->
-        Logger.warn("Merge from #{from} to #{to} aborted \n #{error}")
+        Logger.warning("Merge from #{from} to #{to} aborted \n #{error}")
         # System.cmd("git", ["merge", "--abort"])
         Git.Cli.merge(["--abort"])
     end

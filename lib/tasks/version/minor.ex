@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Version.Minor do
   def run(opts) do
     opts
     |> Config.create()
-    |> Git.is_clean()
+    |> Git.clean?()
     |> bump_minor()
     |> Changelog.update()
     |> Version.update_mix_file()

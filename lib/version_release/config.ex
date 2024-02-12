@@ -53,7 +53,7 @@ defmodule VersionRelease.Config do
     Usage: mix version.[level] [--dry-run | -d] [--skip-push]
 
     Levels:
-      next    - Bemp version to major, minor or patch based on changelog
+      next    - Bump version to major, minor or patch based on changelog
 
       major   - Bump major version
       minor   - Bump minor version

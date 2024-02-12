@@ -13,7 +13,7 @@ defmodule Mix.Tasks.Version.Next do
     opts
     |> Config.create()
     |> Changelog.get_release_changes()
-    |> Git.is_clean()
+    |> Git.clean?()
     |> bump_version()
     |> Changelog.update()
     |> Version.update_mix_file()

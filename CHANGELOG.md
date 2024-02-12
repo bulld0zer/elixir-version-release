@@ -7,10 +7,17 @@
 <!-- next-header -->
 
 ## [Unreleased] - ReleaseDate
+### Fix
+* Logger.warn/1 is deprecated
+### Dependencies
+* bunt 0.2.1 => 1.0.0 (major)
+* credo 1.7.0 => 1.7.4
+* file_system 0.2.10 => 1.0.0 (major)    
+* jason 1.4.0 => 1.4.1
 
 ## [0.5.3] - 2023-10-13
 ### Fix
-* Retreaving first commit for uncommited changes check before first tag is created
+* Retrieving first commit for uncommitted changes check before first tag is created
 
 ## [0.5.2] - 2023-4-5
 ### Fix
@@ -39,11 +46,11 @@
 
 ## [0.2.3] - 2023-1-10
 ### Fixed
-* Typo in do_replacemetns
+* Typo in do_replacements
 
 ## [0.2.2] - 2023-1-4
 ### Fixed
-* Typo in do_replacemetns
+* Typo in do_replacements
 * Parse pre_release_replacements
 
 ## [0.2.1] - 2022-12-22
