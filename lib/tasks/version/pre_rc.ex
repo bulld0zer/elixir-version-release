@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Version.Rc do
   def run(opts) do
     opts
     |> Config.create()
-    |> Git.is_clean()
+    |> Git.clean?()
     |> Git.current_tag(:rc)
     |> bump_rc()
     |> Changelog.pre_release_update()

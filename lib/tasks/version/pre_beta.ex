@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Version.Beta do
   def run(opts) do
     opts
     |> Config.create()
-    |> Git.is_clean()
+    |> Git.clean?()
     |> Git.current_tag(:beta)
     |> bump_beta()
     |> Changelog.pre_release_update()

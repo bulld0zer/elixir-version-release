@@ -12,7 +12,7 @@ defmodule Mix.Tasks.Version.Alpha do
   def run(opts) do
     opts
     |> Config.create()
-    |> Git.is_clean()
+    |> Git.clean?()
     |> Git.is_able_to_merge()
     |> Git.current_tag(:alpha)
     |> bump_alpha()
