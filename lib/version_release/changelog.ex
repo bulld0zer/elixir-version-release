@@ -200,7 +200,7 @@ defmodule VersionRelease.Changelog do
           minor: [],
           major: []
         },
-        fn line, acc -> release_changes_reductor(line, acc, config) end
+        &release_changes_reducer(&1, &2, config)
       )
 
     changelog = Map.put(changelog, :changes, %{patch: patch, minor: minor, major: major})
@@ -208,7 +208,7 @@ defmodule VersionRelease.Changelog do
     Map.put(config, :changelog, changelog)
   end
 
-  defp release_changes_reductor(
+  defp release_changes_reducer(
          line,
          %{
            patch: patch,

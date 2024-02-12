@@ -9,6 +9,11 @@
 ## [Unreleased] - ReleaseDate
 ### Fix
 * Logger.warn/1 is deprecated
+### Dependencies
+* bunt 0.2.1 => 1.0.0 (major)
+* credo 1.7.0 => 1.7.4
+* file_system 0.2.10 => 1.0.0 (major)    
+* jason 1.4.0 => 1.4.1
 
 ## [0.5.3] - 2023-10-13
 ### Fix

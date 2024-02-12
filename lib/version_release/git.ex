@@ -110,19 +110,8 @@ defmodule VersionRelease.Git do
       when is_list(branches) do
     Logger.info("Checking if it will be possible to merge")
 
-    Enum.reduce(branches, true, fn %{from: from, to: tos}, acc ->
-      if current_branch() == from do
-        Enum.reduce(tos, acc, fn to, acc2 ->
-          check_is_able_to_merge(from, to)
-          |> case do
-            {:ok, _} -> acc2
-            {:error, _} -> false
-          end
-        end)
-      else
-        acc
-      end
-    end)
+    branches
+    |> check_is_able_to_merge()
     |> case do
       true ->
         config
@@ -141,6 +130,24 @@ defmodule VersionRelease.Git do
 
   def is_able_to_merge(config) do
     config
+  end
+
+  defp check_is_able_to_merge([%{from: from, to: targets} | rest]) do
+    result =
+      targets
+      |> Enum.reduce(true, fn to, acc ->
+        check_is_able_to_merge(from, to)
+        |> case do
+          {:ok, _} -> acc
+          {:error, _} -> false
+        end
+      end)
+
+    result && check_is_able_to_merge(rest)
+  end
+
+  defp check_is_able_to_merge([]) do
+    true
   end
 
   defp check_is_able_to_merge(from, to) do
