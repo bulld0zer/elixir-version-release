@@ -84,7 +84,7 @@ defmodule VersionRelease.Git do
             } = merge
         } = config
       ) do
-    Logger.warn(
+    Logger.warning(
       "ignore_configs was deprecated and will be removed. PLease change it in config to ignore_conflicts"
     )
 
@@ -156,7 +156,7 @@ defmodule VersionRelease.Git do
           {:ok, "#{from} -> #{to}"}
 
         {error, 1} ->
-          Logger.warn("#{from} -> #{to}: fault \n #{error}")
+          Logger.warning("#{from} -> #{to}: fault \n #{error}")
           {:error, error}
       end
 
@@ -286,7 +286,7 @@ defmodule VersionRelease.Git do
         push(config)
 
       {error, 1} ->
-        Logger.warn("Merge from #{from} to #{to} aborted \n #{error}")
+        Logger.warning("Merge from #{from} to #{to} aborted \n #{error}")
         # System.cmd("git", ["merge", "--abort"])
         Git.Cli.merge(["--abort"])
     end
