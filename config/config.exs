@@ -44,3 +44,5 @@ config :version_release,
       }
     ]
   }
+
+import_config "#{Mix.env()}.exs"

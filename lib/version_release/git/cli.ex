@@ -1,13 +1,22 @@
 defmodule VersionRelease.Git.Cli do
-  defp cmd(options) when is_list(options) do
-    System.cmd("git", options)
+  @system Application.compile_env(:version_release, :system, System)
+
+  defp cmd(args) when is_list(args) do
+    @system.cmd("git", args, [])
   end
 
   def get_elem(res, el) do
     res
     |> elem(el)
-    |> String.trim("\r\n")
-    |> String.trim("\n")
+    |> case do
+      el when is_binary(el) ->
+        el
+        |> String.trim("\r\n")
+        |> String.trim("\n")
+
+      el ->
+        el
+    end
   end
 
   def push(options) when is_list(options) do

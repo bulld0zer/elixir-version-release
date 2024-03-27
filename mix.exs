@@ -17,10 +17,13 @@ defmodule VersionRelease.MixProject do
         main: "readme",
         extras: ["README.md", "CHANGELOG.md", "LICENSE", "docs/REFERENCE.md"]
       ],
-      elixirc_paths: ["lib"],
+      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps()
     ]
   end
+
+  def elixirc_paths(:test), do: ["lib", "test/stubs"]
+  def elixirc_paths(_), do: ["lib"]
 
   def application do
     [
@@ -31,7 +34,8 @@ defmodule VersionRelease.MixProject do
   defp deps do
     [
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 end
